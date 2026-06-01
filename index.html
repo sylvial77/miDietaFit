@@ -1,4 +1,4 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
@@ -25,7 +25,7 @@
 }
 * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
 html, body { height: 100%; background: var(--crema); font-family: 'DM Sans', sans-serif; color: var(--texto); }
- 
+
 #pantalla-perfil { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 2rem; background: var(--crema); }
 .logo-titulo { font-family: 'DM Serif Display', serif; font-size: 36px; color: var(--texto); text-align: center; margin-bottom: 6px; }
 .logo-titulo span { color: var(--verde); }
@@ -43,7 +43,7 @@ html, body { height: 100%; background: var(--crema); font-family: 'DM Sans', san
 .perfil-nombre.sylvia { color: var(--verde); }
 .perfil-nombre.marido { color: var(--naranja); }
 .perfil-rol { font-size: 12px; color: var(--gris); margin-top: 1px; }
- 
+
 #app { display: none; flex-direction: column; height: 100vh; max-width: 430px; margin: 0 auto; position: relative; }
 .header { background: var(--blanco); border-bottom: 1px solid var(--borde); padding: 1rem 1.25rem 0.875rem; flex-shrink: 0; }
 .header-top { display: flex; align-items: center; justify-content: space-between; }
@@ -54,28 +54,28 @@ html, body { height: 100%; background: var(--crema); font-family: 'DM Sans', san
 .dot-sylvia { background: var(--verde); }
 .dot-marido { background: var(--naranja); }
 .header-fecha { font-size: 13px; color: var(--gris); margin-top: 2px; }
- 
+
 .nav-tabs { display: flex; background: var(--blanco); border-bottom: 1px solid var(--borde); flex-shrink: 0; }
 .tab-btn { flex: 1; border: none; background: none; padding: 10px 4px 8px; font-family: 'DM Sans', sans-serif; font-size: 11px; color: var(--gris); cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 3px; border-bottom: 2px solid transparent; transition: all 0.15s; }
 .tab-btn svg { width: 20px; height: 20px; stroke: var(--gris); fill: none; stroke-width: 1.8; }
 .tab-btn.active { color: var(--verde); border-bottom-color: var(--verde); }
 .tab-btn.active svg { stroke: var(--verde); }
- 
+
 .contenido { flex: 1; overflow-y: auto; background: var(--crema); -webkit-overflow-scrolling: touch; }
 .pantalla { display: none; padding: 1rem; }
 .pantalla.activa { display: block; }
- 
+
 .card { background: var(--blanco); border: 1px solid var(--borde); border-radius: 16px; padding: 1rem 1.25rem; margin-bottom: 12px; box-shadow: var(--sombra); }
 .card-titulo { font-size: 12px; font-weight: 600; color: var(--gris); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 10px; }
 .comida-desc { font-size: 14px; color: var(--texto); line-height: 1.4; margin-bottom: 8px; }
- 
+
 .opciones-grupo { margin-top: 8px; }
 .opciones-grupo-label { font-size: 11px; font-weight: 600; color: var(--gris); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 6px; }
 .opciones { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 4px; }
 .opcion-chip { border: 1.5px solid var(--borde); background: var(--crema); border-radius: 20px; padding: 4px 12px; font-size: 12px; color: var(--gris); cursor: pointer; transition: all 0.15s; font-family: 'DM Sans', sans-serif; }
 .opcion-chip.elegida { background: var(--verde-light); border-color: var(--verde); color: var(--verde); font-weight: 500; }
 .opcion-chip.elegida::before { content: '✓ '; }
- 
+
 .dia-card { background: var(--blanco); border: 1px solid var(--borde); border-radius: 14px; margin-bottom: 10px; overflow: hidden; box-shadow: 0 1px 6px rgba(0,0,0,0.05); }
 .dia-header { display: flex; align-items: center; justify-content: space-between; padding: 10px 14px; cursor: pointer; border-bottom: 1px solid transparent; }
 .dia-header.abierto { border-bottom-color: var(--borde); }
@@ -90,7 +90,7 @@ html, body { height: 100%; background: var(--crema); font-family: 'DM Sans', san
 .dia-comida:last-child { margin-bottom: 0; }
 .dia-comida-hora { font-size: 11px; font-weight: 600; color: var(--gris); text-transform: uppercase; letter-spacing: 0.05em; }
 .dia-comida-texto { font-size: 13px; color: var(--texto); margin-top: 3px; line-height: 1.4; }
- 
+
 .lista-dia-titulo { font-size: 13px; font-weight: 600; color: var(--verde); text-transform: uppercase; letter-spacing: 0.05em; margin: 14px 0 8px; }
 .lista-item { display: flex; align-items: center; gap: 10px; padding: 9px 0; border-bottom: 1px solid var(--borde); }
 .lista-item:last-child { border-bottom: none; }
@@ -99,7 +99,7 @@ html, body { height: 100%; background: var(--crema); font-family: 'DM Sans', san
 .lista-check.marcado::after { content: '✓'; color: white; font-size: 11px; }
 .lista-nombre { font-size: 14px; color: var(--texto); }
 .lista-nombre.marcado { text-decoration: line-through; color: var(--gris); }
- 
+
 .evol-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px; }
 .evol-stat { background: var(--crema); border-radius: 12px; padding: 12px 14px; border: 1px solid var(--borde); }
 .evol-label { font-size: 11px; color: var(--gris); font-weight: 500; text-transform: uppercase; letter-spacing: 0.04em; }
@@ -116,7 +116,7 @@ html, body { height: 100%; background: var(--crema); font-family: 'DM Sans', san
 .btn-guardar { width: 100%; background: var(--verde); color: white; border: none; border-radius: 12px; padding: 13px; font-size: 15px; font-weight: 600; font-family: 'DM Sans', sans-serif; cursor: pointer; transition: all 0.15s; margin-top: 4px; }
 .btn-guardar:active { transform: scale(0.98); background: #235f3d; }
 .btn-secundario { width: 100%; background: var(--blanco); color: var(--verde); border: 1.5px solid var(--verde); border-radius: 12px; padding: 11px; font-size: 14px; font-weight: 600; font-family: 'DM Sans', sans-serif; cursor: pointer; margin-top: 8px; }
- 
+
 .quincena-badge { display: inline-block; background: var(--verde-light); color: var(--verde); font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 20px; margin-bottom: 12px; }
 .notif { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); background: var(--verde); color: white; padding: 10px 20px; border-radius: 20px; font-size: 13px; font-weight: 500; z-index: 1000; opacity: 0; transition: opacity 0.3s; white-space: nowrap; pointer-events: none; }
 .notif.show { opacity: 1; }
@@ -134,7 +134,7 @@ html, body { height: 100%; background: var(--crema); font-family: 'DM Sans', san
 </style>
 </head>
 <body>
- 
+
 <div id="pantalla-perfil">
   <div class="logo-titulo">MiDieta <span>Fit</span></div>
   <div class="logo-sub">Tu plan nutricional personalizado</div>
@@ -150,7 +150,7 @@ html, body { height: 100%; background: var(--crema); font-family: 'DM Sans', san
     </button>
   </div>
 </div>
- 
+
 <div id="app">
   <div class="header">
     <div class="header-top">
@@ -163,7 +163,7 @@ html, body { height: 100%; background: var(--crema); font-family: 'DM Sans', san
     </div>
     <div class="header-fecha" id="header-fecha"></div>
   </div>
- 
+
   <div class="nav-tabs">
     <button class="tab-btn active" onclick="irTab('hoy',this)">
       <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
@@ -186,7 +186,7 @@ html, body { height: 100%; background: var(--crema); font-family: 'DM Sans', san
       Dieta
     </button>
   </div>
- 
+
   <div class="contenido">
     <div class="pantalla activa" id="tab-hoy"><div id="hoy-contenido"></div></div>
     <div class="pantalla" id="tab-semana"><div id="semana-contenido"></div></div>
@@ -195,9 +195,9 @@ html, body { height: 100%; background: var(--crema); font-family: 'DM Sans', san
     <div class="pantalla" id="tab-dieta"><div id="dieta-contenido"></div></div>
   </div>
 </div>
- 
+
 <div class="notif" id="notif"></div>
- 
+
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import { getDatabase, ref, set, onValue } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
@@ -219,7 +219,7 @@ window.dbOnValue = onValue;
 window.fbListo = true;
 document.dispatchEvent(new Event('firebase-listo'));
 </script>
- 
+
 <script>
 const DIAS = ["Lunes","Martes","Miércoles","Jueves","Viernes","Sábado","Domingo"];
 let perfilActual = null;
@@ -227,7 +227,7 @@ let elecciones = {};
 let mediciones = [];
 let listaCompra = {};
 let dietaActual = null;
- 
+
 function getDiaSemana() {
   const map = [6,0,1,2,3,4,5];
   return DIAS[map[new Date().getDay()]];
@@ -249,7 +249,7 @@ function cargarFirebase(path, callback) {
   if (!window.fbListo) { callback(null); return; }
   window.dbOnValue(window.dbRef(window.db, path), snap => callback(snap.val()));
 }
- 
+
 window.entrar = function(perfil) {
   perfilActual = perfil;
   document.getElementById('pantalla-perfil').style.display = 'none';
@@ -262,27 +262,27 @@ window.entrar = function(perfil) {
   cargarFirebase('listaCompra/' + perfil, data => { listaCompra = data || {}; });
   cargarFirebase('dieta', data => { dietaActual = data || null; renderDieta(); renderHoy(); renderSemana(); renderCompra(); });
 };
- 
+
 window.cerrarSesion = function() {
   perfilActual = null;
   document.getElementById('pantalla-perfil').style.display = 'flex';
   document.getElementById('app').style.display = 'none';
 };
- 
+
 window.irTab = function(tab, btn) {
   document.querySelectorAll('.pantalla').forEach(p => p.classList.remove('activa'));
   document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
   document.getElementById('tab-' + tab).classList.add('activa');
   btn.classList.add('active');
 };
- 
+
 window.irTabDieta = function() {
   document.querySelectorAll('.pantalla').forEach(p => p.classList.remove('activa'));
   document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
   document.getElementById('tab-dieta').classList.add('activa');
   document.getElementById('tab-btn-dieta').classList.add('active');
 };
- 
+
 // ══════════════════════════════════════
 // RENDER HOY
 // ══════════════════════════════════════
@@ -308,7 +308,7 @@ function renderHoy() {
   html += cardComida('Postre / recena 🍫', dietaActual.postre?.descripcion||'–', [{label:'', opciones: dietaActual.postre?.opciones||[]}], 'postre', dia);
   c.innerHTML = html;
 }
- 
+
 function cardComida(titulo, texto, grupos, tipo, dia) {
   let gruposHtml = '';
   grupos.forEach(g => {
@@ -327,29 +327,30 @@ function cardComida(titulo, texto, grupos, tipo, dia) {
   });
   return `<div class="card"><div class="card-titulo">${titulo}</div><div class="comida-desc">${texto}</div>${gruposHtml}</div>`;
 }
- 
+
 function cardMediaTarde(dia) {
   const mt = dietaActual.mediaTarde;
   if (!mt) return '';
-  const opcionesBase = mt.opcionesBase || mt.opciones?.filter(o => o.includes('batido') || o.includes('Yogur') || o.includes('Helado')) || ['Queso batido 0%','Yogur con proteínas'];
-  const opcionesFruta = mt.opcionesFruta || mt.opciones?.filter(o => !o.includes('batido') && !o.includes('Yogur') && !o.includes('Helado')) || ['Fresas','Melón','Pera','Manzana','Kiwi'];
- 
+  // Siempre usar valores fijos como fallback seguro
+  const opcionesBase = (mt.opcionesBase && mt.opcionesBase.length > 0) ? mt.opcionesBase : ['Queso batido 0%', 'Yogur con proteínas'];
+  const opcionesFruta = (mt.opcionesFruta && mt.opcionesFruta.length > 0) ? mt.opcionesFruta : ['Fresas', 'Melón', 'Pera', 'Manzana', 'Kiwi'];
+
   const keyBase = dia + '_mediaTarde_base';
   const keyFruta = dia + '_mediaTarde_fruta';
   const elegidaBase = elecciones[keyBase] || null;
   const elegidaFruta = elecciones[keyFruta] || null;
- 
+
   let html = `<div class="card"><div class="card-titulo">Media tarde 🍎</div><div class="comida-desc">${mt.descripcion||'–'}</div>`;
- 
+
   html += `<div class="opciones-grupo"><div class="opciones-grupo-label">Base</div><div class="opciones">`;
   opcionesBase.forEach(op => {
     const sel = elegidaBase === op ? ' elegida' : '';
     html += `<button class="opcion-chip${sel}" onclick="elegirOpcion('${dia}','mediaTarde','${op.replace(/'/g,"\\'")}','base')">${op}</button>`;
   });
   html += `</div></div>`;
- 
+
   html += `<div class="divisor"></div>`;
- 
+
   html += `<div class="opciones-grupo"><div class="opciones-grupo-label">Fruta</div><div class="opciones">`;
   opcionesFruta.forEach(op => {
     const sel = elegidaFruta === op ? ' elegida' : '';
@@ -358,7 +359,7 @@ function cardMediaTarde(dia) {
   html += `</div></div></div>`;
   return html;
 }
- 
+
 window.elegirOpcion = function(dia, tipo, opcion, grupo) {
   const key = dia + '_' + tipo + '_' + grupo;
   elecciones[key] = opcion;
@@ -367,7 +368,7 @@ window.elegirOpcion = function(dia, tipo, opcion, grupo) {
   renderCompra();
   mostrarNotif('✓ Guardado');
 };
- 
+
 // ══════════════════════════════════════
 // RENDER SEMANA
 // ══════════════════════════════════════
@@ -401,7 +402,7 @@ function renderSemana() {
   });
   document.getElementById('semana-contenido').innerHTML = html;
 }
- 
+
 window.toggleDia = function(header) {
   const body = header.nextElementSibling;
   const arrow = header.querySelector('.dia-arrow');
@@ -410,7 +411,7 @@ window.toggleDia = function(header) {
   arrow.classList.toggle('abierto', !abierto);
   header.classList.toggle('abierto', !abierto);
 };
- 
+
 // ══════════════════════════════════════
 // RENDER COMPRA
 // ══════════════════════════════════════
@@ -439,14 +440,14 @@ function renderCompra() {
   });
   document.getElementById('compra-contenido').innerHTML = html;
 }
- 
+
 window.toggleCompra = function(dia, i) {
   const key = dia + '_' + i;
   listaCompra[key] = !listaCompra[key];
   guardarFirebase('listaCompra/' + perfilActual, listaCompra);
   renderCompra();
 };
- 
+
 // ══════════════════════════════════════
 // PESTAÑA DIETA
 // ══════════════════════════════════════
@@ -468,7 +469,7 @@ function renderDieta() {
     </div>`;
   }
 }
- 
+
 window.mostrarUpload = function() {
   document.getElementById('dieta-contenido').innerHTML = `
     <div class="upload-zone" onclick="document.getElementById('pdf-input').click()">
@@ -478,7 +479,7 @@ window.mostrarUpload = function() {
     </div>
     <input type="file" accept="application/pdf" class="upload-input" id="pdf-input" onchange="procesarPDF(this)">`;
 };
- 
+
 window.procesarPDF = async function(input) {
   const file = input.files[0];
   if (!file) return;
@@ -486,7 +487,7 @@ window.procesarPDF = async function(input) {
   try {
     const base64 = await fileToBase64(file);
     const prompt = `Analiza este PDF de dieta nutricional y extrae la información en formato JSON estricto. Devuelve SOLO el JSON sin texto adicional ni markdown.
- 
+
 Formato exacto:
 {
   "quincena": "1ª Quincena",
@@ -552,7 +553,7 @@ Formato exacto:
     console.error(err);
   }
 };
- 
+
 function fileToBase64(file) {
   return new Promise((res, rej) => {
     const r = new FileReader();
@@ -561,7 +562,7 @@ function fileToBase64(file) {
     r.readAsDataURL(file);
   });
 }
- 
+
 // ══════════════════════════════════════
 // EVOLUCIÓN
 // ══════════════════════════════════════
@@ -603,7 +604,7 @@ function renderEvolucion() {
   }
   document.getElementById('evolucion-contenido').innerHTML = html;
 }
- 
+
 window.guardarMedicion = function() {
   const m = {
     fecha: new Date().toLocaleDateString('es-ES'),
@@ -619,7 +620,7 @@ window.guardarMedicion = function() {
   mostrarNotif('✓ Medición guardada');
   renderEvolucion();
 };
- 
+
 document.addEventListener('firebase-listo', () => console.log('Firebase listo'));
 </script>
 </body>
