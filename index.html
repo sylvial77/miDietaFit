@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#1a1a2e">
+<title>MiDieta Fit</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root {
+  --verde: #2d7a4f;
+  --verde-light: #e8f5ee;
+  --verde-mid: #a8d5b8;
+  --naranja: #e8622a;
+  --naranja-light: #fdf0eb;
+  --crema: #faf8f4;
+  --gris: #6b6b6b;
+  --gris-light: #f0eeea;
+  --borde: #e8e4dc;
+  --texto: #1a1a1a;
+  --blanco: #ffffff;
+  --sombra: 0 2px 16px rgba(0,0,0,0.08);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+html, body { height: 100%; background: var(--crema); font-family: 'DM Sans', sans-serif; color: var(--texto); }
+
+/* PANTALLA PERFIL */
+#pantalla-perfil {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background: var(--crema);
+}
+.logo-titulo {
+  font-family: 'DM Serif Display', serif;
+  font-size: 36px;
+  color: var(--texto);
+  text-align: center;
+  margin-bottom: 6px;
+}
+.logo-titulo span { color: var(--verde); }
+.logo-sub { font-size: 14px; color: var(--gris); text-align: center; margin-bottom: 3rem; }
+.perfil-pregunta { font-size: 16px; font-weight: 500; color: var(--gris); margin-bottom: 1.5rem; text-align: center; }
+.perfiles-grid { display: flex; flex-direction: column; gap: 14px; width: 100%; max-width: 320px; }
+.perfil-btn {
+  display: flex; align-items: center; gap: 16px;
+  background: var(--blanco); border: 1.5px solid var(--borde);
+  border-radius: 16px; padding: 1.1rem 1.4rem;
+  cursor: pointer; transition: all 0.2s;
+  box-shadow: var(--sombra);
+}
+.perfil-btn:active { transform: scale(0.97); }
+.perfil-btn.sylvia:hover, .perfil-btn.sylvia:focus { border-color: var(--verde); background: var(--verde-light); }
+.perfil-btn.marido:hover, .perfil-btn.marido:focus { border-color: var(--naranja); background: var(--naranja-light); }
+.perfil-avatar {
+  width: 48px; height: 48px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px; flex-shrink: 0;
+}
+.perfil-avatar.sylvia { background: var(--verde-light); }
+.perfil-avatar.marido { background: var(--naranja-light); }
+.perfil-nombre { font-size: 18px; font-weight: 600; }
+.perfil-nombre.sylvia { color: var(--verde); }
+.perfil-nombre.marido { color: var(--naranja); }
+.perfil-rol { font-size: 12px; color: var(--gris); margin-top: 1px; }
+
+/* APP PRINCIPAL */
+#app { display: none; flex-direction: column; height: 100vh; max-width: 430px; margin: 0 auto; position: relative; }
+
+/* HEADER */
+.header {
+  background: var(--blanco);
+  border-bottom: 1px solid var(--borde);
+  padding: 1rem 1.25rem 0.875rem;
+  flex-shrink: 0;
+}
+.header-top { display: flex; align-items: center; justify-content: space-between; }
+.header-nombre {
+  font-family: 'DM Serif Display', serif;
+  font-size: 24px; color: var(--texto);
+}
+.header-nombre span { color: var(--verde); }
+.header-perfil-badge {
+  display: flex; align-items: center; gap: 7px;
+  background: var(--gris-light); border-radius: 20px;
+  padding: 5px 12px 5px 8px; cursor: pointer;
+  font-size: 13px; font-weight: 500; color: var(--gris);
+  border: none;
+}
+.header-perfil-badge .dot { width: 10px; height: 10px; border-radius: 50%; }
+.dot-sylvia { background: var(--verde); }
+.dot-marido { background: var(--naranja); }
+.header-fecha { font-size: 13px; color: var(--gris); margin-top: 2px; }
+
+/* NAV TABS */
+.nav-tabs {
+  display: flex;
+  background: var(--blanco);
+  border-bottom: 1px solid var(--borde);
+  flex-shrink: 0;
+}
+.tab-btn {
+  flex: 1; border: none; background: none;
+  padding: 10px 4px 8px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px; color: var(--gris);
+  cursor: pointer; display: flex; flex-direction: column;
+  align-items: center; gap: 3px;
+  border-bottom: 2px solid transparent;
+  transition: all 0.15s;
+}
+.tab-btn svg { width: 20px; height: 20px; stroke: var(--gris); fill: none; stroke-width: 1.8; }
+.tab-btn.active { color: var(--verde); border-bottom-color: var(--verde); }
+.tab-btn.active svg { stroke: var(--verde); }
+
+/* CONTENIDO */
+.contenido { flex: 1; overflow-y: auto; background: var(--crema); -webkit-overflow-scrolling: touch; }
+.pantalla { display: none; padding: 1rem; }
+.pantalla.activa { display: block; }
+
+/* CARDS */
+.card {
+  background: var(--blanco); border: 1px solid var(--borde);
+  border-radius: 16px; padding: 1rem 1.25rem; margin-bottom: 12px;
+  box-shadow: var(--sombra);
+}
+.card-titulo { font-size: 12px; font-weight: 600; color: var(--gris); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 10px; }
+
+/* COMIDA HOY */
+.comida-item { padding: 10px 0; border-bottom: 1px solid var(--borde); }
+.comida-item:last-child { border-bottom: none; padding-bottom: 0; }
+.comida-hora { font-size: 11px; font-weight: 600; color: var(--gris); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 5px; }
+.comida-desc { font-size: 14px; color: var(--texto); line-height: 1.4; margin-bottom: 8px; }
+.opciones { display: flex; flex-wrap: wrap; gap: 6px; }
+.opcion-chip {
+  border: 1.5px solid var(--borde); background: var(--crema);
+  border-radius: 20px; padding: 4px 12px;
+  font-size: 12px; color: var(--gris); cursor: pointer;
+  transition: all 0.15s; font-family: 'DM Sans', sans-serif;
+}
+.opcion-chip.elegida { background: var(--verde-light); border-color: var(--verde); color: var(--verde); font-weight: 500; }
+.opcion-chip.elegida::before { content: '✓ '; }
+
+/* SEMANA */
+.dia-card {
+  background: var(--blanco); border: 1px solid var(--borde);
+  border-radius: 14px; margin-bottom: 10px; overflow: hidden;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.05);
+}
+.dia-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 10px 14px; cursor: pointer;
+  border-bottom: 1px solid transparent; transition: all 0.15s;
+}
+.dia-header.abierto { border-bottom-color: var(--borde); }
+.dia-nombre { font-size: 15px; font-weight: 600; }
+.dia-nombre.hoy { color: var(--verde); }
+.dia-resumen { font-size: 12px; color: var(--gris); }
+.dia-arrow { font-size: 16px; color: var(--gris); transition: transform 0.2s; }
+.dia-arrow.abierto { transform: rotate(180deg); }
+.dia-body { padding: 10px 14px; display: none; }
+.dia-body.abierto { display: block; }
+.dia-comida { margin-bottom: 10px; }
+.dia-comida:last-child { margin-bottom: 0; }
+.dia-comida-hora { font-size: 11px; font-weight: 600; color: var(--gris); text-transform: uppercase; letter-spacing: 0.05em; }
+.dia-comida-texto { font-size: 13px; color: var(--texto); margin-top: 3px; line-height: 1.4; }
+
+/* LISTA COMPRA */
+.lista-dia-titulo {
+  font-size: 13px; font-weight: 600; color: var(--verde);
+  text-transform: uppercase; letter-spacing: 0.05em;
+  margin: 14px 0 8px;
+}
+.lista-item {
+  display: flex; align-items: center; gap: 10px;
+  padding: 9px 0; border-bottom: 1px solid var(--borde);
+}
+.lista-item:last-child { border-bottom: none; }
+.lista-check {
+  width: 20px; height: 20px; border-radius: 50%;
+  border: 1.5px solid var(--borde); background: var(--blanco);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; flex-shrink: 0; transition: all 0.15s;
+}
+.lista-check.marcado { background: var(--verde); border-color: var(--verde); }
+.lista-check.marcado::after { content: '✓'; color: white; font-size: 11px; }
+.lista-nombre { font-size: 14px; color: var(--texto); }
+.lista-nombre.marcado { text-decoration: line-through; color: var(--gris); }
+.lista-categoria { font-size: 11px; color: var(--gris); margin-left: auto; }
+
+/* EVOLUCIÓN */
+.evol-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px; }
+.evol-stat {
+  background: var(--crema); border-radius: 12px;
+  padding: 12px 14px; border: 1px solid var(--borde);
+}
+.evol-label { font-size: 11px; color: var(--gris); font-weight: 500; text-transform: uppercase; letter-spacing: 0.04em; }
+.evol-valor { font-size: 24px; font-weight: 600; color: var(--texto); margin-top: 2px; }
+.evol-unidad { font-size: 13px; font-weight: 400; color: var(--gris); }
+.evol-cambio { font-size: 11px; margin-top: 3px; }
+.evol-cambio.mejor { color: var(--verde); }
+.evol-cambio.peor { color: var(--naranja); }
+
+/* FORMULARIO NUEVA MEDICIÓN */
+.form-grupo { margin-bottom: 12px; }
+.form-label { font-size: 13px; font-weight: 500; color: var(--gris); margin-bottom: 5px; display: block; }
+.form-input {
+  width: 100%; border: 1.5px solid var(--borde); border-radius: 10px;
+  padding: 9px 12px; font-size: 15px; font-family: 'DM Sans', sans-serif;
+  color: var(--texto); background: var(--blanco);
+  transition: border-color 0.15s; outline: none;
+}
+.form-input:focus { border-color: var(--verde); }
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.btn-guardar {
+  width: 100%; background: var(--verde); color: white;
+  border: none; border-radius: 12px; padding: 13px;
+  font-size: 15px; font-weight: 600; font-family: 'DM Sans', sans-serif;
+  cursor: pointer; transition: all 0.15s; margin-top: 4px;
+}
+.btn-guardar:active { transform: scale(0.98); background: #235f3d; }
+
+/* MINI GRAFICA */
+.grafica-wrap { margin-top: 8px; overflow-x: auto; }
+.grafica-svg { min-width: 100%; }
+
+/* ESTADOS */
+.empty-state { text-align: center; padding: 2.5rem 1rem; color: var(--gris); }
+.empty-state .icon { font-size: 40px; margin-bottom: 10px; }
+.empty-state p { font-size: 14px; line-height: 1.5; }
+
+/* BADGE QUINCENA */
+.quincena-badge {
+  display: inline-block; background: var(--verde-light);
+  color: var(--verde); font-size: 11px; font-weight: 600;
+  padding: 3px 10px; border-radius: 20px; margin-bottom: 12px;
+}
+
+/* NOTIF */
+.notif {
+  position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
+  background: var(--verde); color: white; padding: 10px 20px;
+  border-radius: 20px; font-size: 13px; font-weight: 500;
+  z-index: 1000; opacity: 0; transition: opacity 0.3s;
+  white-space: nowrap; pointer-events: none;
+}
+.notif.show { opacity: 1; }
+</style>
+</head>
+<body>
+
+<!-- PANTALLA SELECCIÓN PERFIL -->
+<div id="pantalla-perfil">
+  <div class="logo-titulo">MiDieta <span>Fit</span></div>
+  <div class="logo-sub">Tu plan nutricional personalizado</div>
+  <div class="perfil-pregunta">¿Quién eres?</div>
+  <div class="perfiles-grid">
+    <button class="perfil-btn sylvia" onclick="entrar('sylvia')">
+      <div class="perfil-avatar sylvia">👑</div>
+      <div>
+        <div class="perfil-nombre sylvia">Sylvia</div>
+        <div class="perfil-rol">Plan completo</div>
+      </div>
+    </button>
+    <button class="perfil-btn marido" onclick="entrar('marido')">
+      <div class="perfil-avatar marido">💪</div>
+      <div>
+        <div class="perfil-nombre marido">Antonio</div>
+        <div class="perfil-rol">Ver menú del día</div>
+      </div>
+    </button>
+  </div>
+</div>
+
+<!-- APP PRINCIPAL -->
+<div id="app">
+  <div class="header">
+    <div class="header-top">
+      <div class="header-nombre">MiDieta <span>Fit</span></div>
+      <button class="header-perfil-badge" onclick="cerrarSesion()">
+        <div class="dot" id="dot-perfil"></div>
+        <span id="nombre-perfil-badge">Sylvia</span>
+        <span style="color:var(--gris);font-size:11px;">↩</span>
+      </button>
+    </div>
+    <div class="header-fecha" id="header-fecha"></div>
+  </div>
+
+  <div class="nav-tabs">
+    <button class="tab-btn active" onclick="irTab('hoy',this)">
+      <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      Hoy
+    </button>
+    <button class="tab-btn" onclick="irTab('semana',this)">
+      <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      Semana
+    </button>
+    <button class="tab-btn" onclick="irTab('compra',this)">
+      <svg viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 001.98 1.61h9.72a2 2 0 001.98-1.61L23 6H6"/></svg>
+      Compra
+    </button>
+    <button class="tab-btn" onclick="irTab('evolucion',this)">
+      <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+      Evolución
+    </button>
+  </div>
+
+  <div class="contenido">
+
+    <!-- HOY -->
+    <div class="pantalla activa" id="tab-hoy">
+      <div id="hoy-contenido"></div>
+    </div>
+
+    <!-- SEMANA -->
+    <div class="pantalla" id="tab-semana">
+      <div id="semana-contenido"></div>
+    </div>
+
+    <!-- COMPRA -->
+    <div class="pantalla" id="tab-compra">
+      <div id="compra-contenido"></div>
+    </div>
+
+    <!-- EVOLUCIÓN -->
+    <div class="pantalla" id="tab-evolucion">
+      <div id="evolucion-contenido"></div>
+    </div>
+
+  </div>
+</div>
+
+<div class="notif" id="notif"></div>
+
+<!-- FIREBASE -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getDatabase, ref, set, get, onValue } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCxQhuhb4FTkX4sDFolKZcKCZ7Xsl7qI9s",
+  authDomain: "midietafit.firebaseapp.com",
+  databaseURL: "https://midietafit-default-rtdb.firebaseio.com",
+  projectId: "midietafit",
+  storageBucket: "midietafit.firebasestorage.app",
+  messagingSenderId: "943053022427",
+  appId: "1:943053022427:web:1cfbe230afb33e8a9318fe"
+};
+
+const fbApp = initializeApp(firebaseConfig);
+const db = getDatabase(fbApp);
+window.db = db;
+window.dbRef = ref;
+window.dbSet = set;
+window.dbGet = get;
+window.dbOnValue = onValue;
+window.fbListo = true;
+document.dispatchEvent(new Event('firebase-listo'));
+</script>
+
+<script>
+// ═══════════════════════════════════════
+// DATOS DE LA DIETA (1ª QUINCENA)
+// ═══════════════════════════════════════
+const DIETA = {
+  desayuno: {
+    fijo: "Descafeinado con leche desnatada/semi (xilitol) + Tostada integral con tomate y aceite",
+    opciones: ["Tomate y aceite", "¼ Aguacate + queso cottage"]
+  },
+  mediaTarde: {
+    fijo: "Queso batido 0% / Yogur proteínas + fruta + 3 nueces",
+    opcionesBase: ["Queso batido 0%", "Yogur con proteínas"],
+    opcionesFruta: ["Fresas", "Melón", "Pera", "Manzana", "Kiwi"]
+  },
+  postre: {
+    fijo: "Yogur proteínas natural + fruta + 1 onza chocolate 85%",
+    opciones: ["Fresas", "Arándanos"]
+  },
+  comidas: {
+    "Lunes":    { texto: "Espárragos verdes + Solomillo de cerdo plancha", opciones: [] },
+    "Martes":   { texto: "Setas/Champiñón salteado con gulas, ajo y cayena + Pescado blanco", opciones: ["Setas", "Champiñón"] },
+    "Miércoles":{ texto: "Lentejas con verduras", opciones: [] },
+    "Jueves":   { texto: "Acelgas/Espinacas con huevo + Pescado blanco al horno/plancha", opciones: ["Acelgas", "Espinacas"] },
+    "Viernes":  { texto: "Filetes de pechuga de pollo a la plancha con sofrito de puerro y calabacín", opciones: [] },
+    "Sábado":   { texto: "Parrillada de verduras + Sepia/Calamar plancha con ajo y perejil", opciones: ["Sepia", "Calamar"] },
+    "Domingo":  { texto: "Fajitas de pollo con cebolla, pimiento rojo y verde y guacamole", opciones: [] }
+  },
+  cenas: {
+    "Lunes":    { texto: "Ensalada pepino y zanahoria + Mejillones al vapor/vinagreta", opciones: ["Al vapor", "Vinagreta"] },
+    "Martes":   { texto: "Ensalada hoja verde, pepino, zanahoria, melón y pollo desmenuzado", opciones: [] },
+    "Miércoles":{ texto: "Gazpacho sin pan/Salmorejo + Tortilla de cebolla y calabacín", opciones: ["Gazpacho", "Salmorejo"] },
+    "Jueves":   { texto: "Ensalada hoja verde, pepino, zanahoria, melón y pollo desmenuzado", opciones: [] },
+    "Viernes":  { texto: "Ensalada pepino y zanahoria + Mejillones al vapor/vinagreta", opciones: ["Al vapor", "Vinagreta"] },
+    "Sábado":   { texto: "¡Sábado libre! 🎉", opciones: [] },
+    "Domingo":  { texto: "Gazpacho sin pan/Salmorejo + Tortilla de cebolla y calabacín", opciones: ["Gazpacho", "Salmorejo"] }
+  }
+};
+
+const DIAS = ["Lunes","Martes","Miércoles","Jueves","Viernes","Sábado","Domingo"];
+
+// Frescos por día (base)
+const FRESCOS = {
+  "Lunes":    ["Espárragos verdes","Solomillo de cerdo","Pepino","Zanahoria","Mejillones","Leche desnatada/semi","Tomate"],
+  "Martes":   ["Setas o Champiñón","Gulas","Pescado blanco","Lechuga/hoja verde","Pepino","Zanahoria","Melón","Pechuga de pollo (para ensalada)"],
+  "Miércoles":["Lentejas","Verduras para caldo","Cebolla","Calabacín","Huevos","Tomate","Zanahoria"],
+  "Jueves":   ["Acelgas o Espinacas","Huevos","Pescado blanco","Lechuga/hoja verde","Pepino","Zanahoria","Melón","Pechuga de pollo"],
+  "Viernes":  ["Pechuga de pollo (filetes)","Puerro","Calabacín","Pepino","Zanahoria","Mejillones","Tomate"],
+  "Sábado":   ["Verduras variadas (parrilla)","Sepia o Calamar","Ajo","Perejil"],
+  "Domingo":  ["Pechuga de pollo","Cebolla","Pimiento rojo","Pimiento verde","Aguacate (guacamole)","Tomate","Zanahoria"]
+};
+
+// ═══════════════════════════════════════
+// ESTADO GLOBAL
+// ═══════════════════════════════════════
+let perfilActual = null;
+let elecciones = {};
+let mediciones = [];
+let listaCompra = {};
+
+// ═══════════════════════════════════════
+// UTILIDADES
+// ═══════════════════════════════════════
+function getDiaSemana() {
+  const d = new Date();
+  const idx = d.getDay();
+  const map = [6,0,1,2,3,4,5];
+  return DIAS[map[idx]];
+}
+function getFechaTexto() {
+  return new Date().toLocaleDateString('es-ES', {weekday:'long', day:'numeric', month:'long'});
+}
+function mostrarNotif(txt) {
+  const n = document.getElementById('notif');
+  n.textContent = txt;
+  n.classList.add('show');
+  setTimeout(() => n.classList.remove('show'), 2200);
+}
+
+// ═══════════════════════════════════════
+// FIREBASE HELPERS
+// ═══════════════════════════════════════
+function guardarFirebase(path, data) {
+  if (!window.fbListo) return;
+  window.dbSet(window.dbRef(window.db, path), data);
+}
+function cargarFirebase(path, callback) {
+  if (!window.fbListo) { callback(null); return; }
+  window.dbOnValue(window.dbRef(window.db, path), snap => {
+    callback(snap.val());
+  });
+}
+
+// ═══════════════════════════════════════
+// ENTRADA / SALIDA
+// ═══════════════════════════════════════
+window.entrar = function(perfil) {
+  perfilActual = perfil;
+  document.getElementById('pantalla-perfil').style.display = 'none';
+  document.getElementById('app').style.display = 'flex';
+  document.getElementById('nombre-perfil-badge').textContent = perfil === 'sylvia' ? 'Sylvia' : 'Antonio';
+  document.getElementById('dot-perfil').className = 'dot dot-' + (perfil === 'sylvia' ? 'sylvia' : 'marido');
+  document.getElementById('header-fecha').textContent = getFechaTexto();
+
+  // Cargar datos de Firebase
+  cargarFirebase('elecciones/' + perfil, data => {
+    elecciones = data || {};
+    renderHoy();
+    renderSemana();
+    renderCompra();
+  });
+  cargarFirebase('mediciones', data => {
+    mediciones = data ? Object.values(data) : [];
+    renderEvolucion();
+  });
+  cargarFirebase('listaCompra/' + perfil, data => {
+    listaCompra = data || {};
+  });
+};
+
+window.cerrarSesion = function() {
+  perfilActual = null;
+  document.getElementById('pantalla-perfil').style.display = 'flex';
+  document.getElementById('app').style.display = 'none';
+};
+
+// ═══════════════════════════════════════
+// TABS
+// ═══════════════════════════════════════
+window.irTab = function(tab, btn) {
+  document.querySelectorAll('.pantalla').forEach(p => p.classList.remove('activa'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + tab).classList.add('activa');
+  btn.classList.add('active');
+  if (tab === 'compra') renderCompra();
+  if (tab === 'evolucion') renderEvolucion();
+};
+
+// ═══════════════════════════════════════
+// RENDER HOY
+// ═══════════════════════════════════════
+function renderHoy() {
+  const dia = getDiaSemana();
+  const c = document.getElementById('hoy-contenido');
+
+  const comida = DIETA.comidas[dia];
+  const cena = DIETA.cenas[dia];
+
+  let html = `<div class="quincena-badge">1ª Quincena · ${dia}</div>`;
+
+  // Desayuno
+  html += renderComidaCard('Desayuno ☕', DIETA.desayuno.fijo, DIETA.desayuno.opciones, 'desayuno', dia);
+  // Comida
+  html += renderComidaCard('Comida 🍽️', comida.texto, comida.opciones, 'comida', dia);
+  // Media tarde
+  html += renderComidaCard('Media tarde 🍎', DIETA.mediaTarde.fijo, [...DIETA.mediaTarde.opcionesBase, ...DIETA.mediaTarde.opcionesFruta], 'mediaTarde', dia);
+  // Cena
+  html += renderComidaCard('Cena 🌙', cena.texto, cena.opciones, 'cena', dia);
+  // Postre
+  html += renderComidaCard('Postre / recena 🍫', DIETA.postre.fijo, DIETA.postre.opciones, 'postre', dia);
+
+  c.innerHTML = html;
+}
+
+function renderComidaCard(titulo, texto, opciones, tipo, dia) {
+  const key = dia + '_' + tipo;
+  const elegida = elecciones[key] || null;
+
+  let chipsHtml = '';
+  if (opciones.length > 0) {
+    chipsHtml = '<div class="opciones">' +
+      opciones.map(op => {
+        const sel = elegida === op ? ' elegida' : '';
+        return `<button class="opcion-chip${sel}" onclick="elegirOpcion('${dia}','${tipo}','${op}')">${op}</button>`;
+      }).join('') +
+      '</div>';
+  }
+
+  return `<div class="card">
+    <div class="card-titulo">${titulo}</div>
+    <div class="comida-desc">${texto}</div>
+    ${chipsHtml}
+  </div>`;
+}
+
+window.elegirOpcion = function(dia, tipo, opcion) {
+  const key = dia + '_' + tipo;
+  elecciones[key] = opcion;
+  guardarFirebase('elecciones/' + perfilActual, elecciones);
+  renderHoy();
+  renderCompra();
+  mostrarNotif('✓ Guardado');
+};
+
+// ═══════════════════════════════════════
+// RENDER SEMANA
+// ═══════════════════════════════════════
+function renderSemana() {
+  const hoy = getDiaSemana();
+  let html = '<div style="margin-bottom:4px;"></div>';
+
+  DIAS.forEach(dia => {
+    const esHoy = dia === hoy;
+    const comida = DIETA.comidas[dia];
+    const cena = DIETA.cenas[dia];
+    const kcDesayuno = elecciones[dia+'_desayuno'] || '–';
+    const kcComida = elecciones[dia+'_comida'] || '–';
+
+    html += `<div class="dia-card">
+      <div class="dia-header ${esHoy ? 'abierto' : ''}" onclick="toggleDia(this)" id="dia-${dia}">
+        <div>
+          <div class="dia-nombre${esHoy ? ' hoy' : ''}">${dia}${esHoy ? ' · HOY' : ''}</div>
+          <div class="dia-resumen">${comida.texto.substring(0,40)}...</div>
+        </div>
+        <div class="dia-arrow ${esHoy ? 'abierto' : ''}">▾</div>
+      </div>
+      <div class="dia-body ${esHoy ? 'abierto' : ''}">
+        <div class="dia-comida">
+          <div class="dia-comida-hora">Desayuno</div>
+          <div class="dia-comida-texto">${DIETA.desayuno.fijo}</div>
+        </div>
+        <div class="dia-comida">
+          <div class="dia-comida-hora">Comida</div>
+          <div class="dia-comida-texto">${comida.texto}</div>
+        </div>
+        <div class="dia-comida">
+          <div class="dia-comida-hora">Media tarde</div>
+          <div class="dia-comida-texto">${DIETA.mediaTarde.fijo}</div>
+        </div>
+        <div class="dia-comida">
+          <div class="dia-comida-hora">Cena</div>
+          <div class="dia-comida-texto">${cena.texto}</div>
+        </div>
+        <div class="dia-comida">
+          <div class="dia-comida-hora">Postre / recena</div>
+          <div class="dia-comida-texto">${DIETA.postre.fijo}</div>
+        </div>
+      </div>
+    </div>`;
+  });
+
+  document.getElementById('semana-contenido').innerHTML = html;
+}
+
+window.toggleDia = function(header) {
+  const body = header.nextElementSibling;
+  const arrow = header.querySelector('.dia-arrow');
+  const abierto = body.classList.contains('abierto');
+  body.classList.toggle('abierto', !abierto);
+  arrow.classList.toggle('abierto', !abierto);
+  header.classList.toggle('abierto', !abierto);
+};
+
+// ═══════════════════════════════════════
+// RENDER COMPRA
+// ═══════════════════════════════════════
+function renderCompra() {
+  const hoy = getDiaSemana();
+  const hoyIdx = DIAS.indexOf(hoy);
+  const diasRestantes = DIAS.slice(hoyIdx);
+
+  let html = `<div style="margin-bottom:4px;"></div>
+  <div class="card" style="margin-bottom:14px;">
+    <div class="card-titulo">Frescos de hoy en adelante</div>
+    <div style="font-size:13px;color:var(--gris);margin-top:-4px;">Solo lo que necesitas comprar fresco</div>
+  </div>`;
+
+  diasRestantes.forEach(dia => {
+    const items = FRESCOS[dia] || [];
+    if (items.length === 0) return;
+    html += `<div class="lista-dia-titulo">${dia}${dia === hoy ? ' · HOY' : ''}</div>
+    <div class="card">`;
+    items.forEach((item, i) => {
+      const key = dia + '_' + i;
+      const marcado = listaCompra[key] ? ' marcado' : '';
+      html += `<div class="lista-item">
+        <div class="lista-check${marcado}" onclick="toggleCompra('${dia}','${i}','${item}')"></div>
+        <span class="lista-nombre${marcado}">${item}</span>
+      </div>`;
+    });
+    html += '</div>';
+  });
+
+  document.getElementById('compra-contenido').innerHTML = html;
+}
+
+window.toggleCompra = function(dia, i, item) {
+  const key = dia + '_' + i;
+  listaCompra[key] = !listaCompra[key];
+  guardarFirebase('listaCompra/' + perfilActual, listaCompra);
+  renderCompra();
+};
+
+// ═══════════════════════════════════════
+// RENDER EVOLUCIÓN
+// ═══════════════════════════════════════
+function renderEvolucion() {
+  const inicio = { peso: 86.2, grasa: 41.9, agua: 43.2, musculo: 47.5, visceral: 9 };
+  const ultima = mediciones.length > 0 ? mediciones[mediciones.length - 1] : null;
+  const actual = ultima || inicio;
+
+  function cambio(campo) {
+    if (!ultima) return '<span style="color:var(--gris);font-size:11px;">Inicio</span>';
+    const diff = (parseFloat(ultima[campo]) - parseFloat(inicio[campo])).toFixed(1);
+    const bueno = (campo === 'grasa' || campo === 'visceral' || campo === 'peso') ? diff < 0 : diff > 0;
+    const clase = bueno ? 'mejor' : 'peor';
+    const signo = diff > 0 ? '+' : '';
+    return `<span class="evol-cambio ${clase}">${signo}${diff} vs inicio</span>`;
+  }
+
+  let html = `<div class="quincena-badge">Medición inicial</div>
+  <div class="evol-grid">
+    <div class="evol-stat">
+      <div class="evol-label">Peso</div>
+      <div class="evol-valor">${actual.peso}<span class="evol-unidad"> kg</span></div>
+      ${cambio('peso')}
+    </div>
+    <div class="evol-stat">
+      <div class="evol-label">% Grasa</div>
+      <div class="evol-valor">${actual.grasa}<span class="evol-unidad"> %</span></div>
+      ${cambio('grasa')}
+    </div>
+    <div class="evol-stat">
+      <div class="evol-label">Kg músculo</div>
+      <div class="evol-valor">${actual.musculo}<span class="evol-unidad"> kg</span></div>
+      ${cambio('musculo')}
+    </div>
+    <div class="evol-stat">
+      <div class="evol-label">% Agua</div>
+      <div class="evol-valor">${actual.agua}<span class="evol-unidad"> %</span></div>
+      ${cambio('agua')}
+    </div>
+    <div class="evol-stat">
+      <div class="evol-label">Grasa visceral</div>
+      <div class="evol-valor">${actual.visceral}<span class="evol-unidad"> kg</span></div>
+      ${cambio('visceral')}
+    </div>
+  </div>`;
+
+  // Formulario nueva medición
+  html += `<div class="card">
+    <div class="card-titulo">Nueva medición (cada 15 días)</div>
+    <div class="form-grid">
+      <div class="form-grupo">
+        <label class="form-label">Peso (kg)</label>
+        <input class="form-input" type="number" step="0.1" id="m-peso" placeholder="86.2">
+      </div>
+      <div class="form-grupo">
+        <label class="form-label">% Grasa</label>
+        <input class="form-input" type="number" step="0.1" id="m-grasa" placeholder="41.9">
+      </div>
+      <div class="form-grupo">
+        <label class="form-label">% Agua</label>
+        <input class="form-input" type="number" step="0.1" id="m-agua" placeholder="43.2">
+      </div>
+      <div class="form-grupo">
+        <label class="form-label">Kg músculo</label>
+        <input class="form-input" type="number" step="0.1" id="m-musculo" placeholder="47.5">
+      </div>
+      <div class="form-grupo">
+        <label class="form-label">Grasa visceral</label>
+        <input class="form-input" type="number" step="0.1" id="m-visceral" placeholder="9">
+      </div>
+    </div>
+    <button class="btn-guardar" onclick="guardarMedicion()">Guardar medición</button>
+  </div>`;
+
+  // Historial
+  if (mediciones.length > 0) {
+    html += `<div class="card">
+      <div class="card-titulo">Historial</div>`;
+    mediciones.slice().reverse().forEach(m => {
+      html += `<div style="padding:8px 0;border-bottom:1px solid var(--borde);font-size:13px;">
+        <span style="color:var(--gris);">${m.fecha}</span>
+        <span style="margin-left:10px;">⚖️ ${m.peso}kg · 🔥 ${m.grasa}% grasa</span>
+      </div>`;
+    });
+    html += '</div>';
+  }
+
+  document.getElementById('evolucion-contenido').innerHTML = html;
+}
+
+window.guardarMedicion = function() {
+  const medicion = {
+    fecha: new Date().toLocaleDateString('es-ES'),
+    peso: document.getElementById('m-peso').value || '–',
+    grasa: document.getElementById('m-grasa').value || '–',
+    agua: document.getElementById('m-agua').value || '–',
+    musculo: document.getElementById('m-musculo').value || '–',
+    visceral: document.getElementById('m-visceral').value || '–',
+    ts: Date.now()
+  };
+  mediciones.push(medicion);
+  guardarFirebase('mediciones/' + medicion.ts, medicion);
+  mostrarNotif('✓ Medición guardada');
+  renderEvolucion();
+};
+
+// Esperar Firebase
+document.addEventListener('firebase-listo', () => {
+  console.log('Firebase listo');
+});
+</script>
+</body>
+</html>
