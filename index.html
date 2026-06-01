@@ -26,42 +26,20 @@
 * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
 html, body { height: 100%; background: var(--crema); font-family: 'DM Sans', sans-serif; color: var(--texto); }
 
-/* PANTALLA PERFIL */
 #pantalla-perfil {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 2rem;
-  background: var(--crema);
+  min-height: 100vh; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; padding: 2rem; background: var(--crema);
 }
-.logo-titulo {
-  font-family: 'DM Serif Display', serif;
-  font-size: 36px;
-  color: var(--texto);
-  text-align: center;
-  margin-bottom: 6px;
-}
+.logo-titulo { font-family: 'DM Serif Display', serif; font-size: 36px; color: var(--texto); text-align: center; margin-bottom: 6px; }
 .logo-titulo span { color: var(--verde); }
 .logo-sub { font-size: 14px; color: var(--gris); text-align: center; margin-bottom: 3rem; }
 .perfil-pregunta { font-size: 16px; font-weight: 500; color: var(--gris); margin-bottom: 1.5rem; text-align: center; }
 .perfiles-grid { display: flex; flex-direction: column; gap: 14px; width: 100%; max-width: 320px; }
-.perfil-btn {
-  display: flex; align-items: center; gap: 16px;
-  background: var(--blanco); border: 1.5px solid var(--borde);
-  border-radius: 16px; padding: 1.1rem 1.4rem;
-  cursor: pointer; transition: all 0.2s;
-  box-shadow: var(--sombra);
-}
+.perfil-btn { display: flex; align-items: center; gap: 16px; background: var(--blanco); border: 1.5px solid var(--borde); border-radius: 16px; padding: 1.1rem 1.4rem; cursor: pointer; transition: all 0.2s; box-shadow: var(--sombra); }
 .perfil-btn:active { transform: scale(0.97); }
-.perfil-btn.sylvia:hover, .perfil-btn.sylvia:focus { border-color: var(--verde); background: var(--verde-light); }
-.perfil-btn.marido:hover, .perfil-btn.marido:focus { border-color: var(--naranja); background: var(--naranja-light); }
-.perfil-avatar {
-  width: 48px; height: 48px; border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 22px; flex-shrink: 0;
-}
+.perfil-btn.sylvia:hover { border-color: var(--verde); background: var(--verde-light); }
+.perfil-btn.marido:hover { border-color: var(--naranja); background: var(--naranja-light); }
+.perfil-avatar { width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0; }
 .perfil-avatar.sylvia { background: var(--verde-light); }
 .perfil-avatar.marido { background: var(--naranja-light); }
 .perfil-nombre { font-size: 18px; font-weight: 600; }
@@ -69,98 +47,45 @@ html, body { height: 100%; background: var(--crema); font-family: 'DM Sans', san
 .perfil-nombre.marido { color: var(--naranja); }
 .perfil-rol { font-size: 12px; color: var(--gris); margin-top: 1px; }
 
-/* APP PRINCIPAL */
 #app { display: none; flex-direction: column; height: 100vh; max-width: 430px; margin: 0 auto; position: relative; }
 
-/* HEADER */
-.header {
-  background: var(--blanco);
-  border-bottom: 1px solid var(--borde);
-  padding: 1rem 1.25rem 0.875rem;
-  flex-shrink: 0;
-}
+.header { background: var(--blanco); border-bottom: 1px solid var(--borde); padding: 1rem 1.25rem 0.875rem; flex-shrink: 0; }
 .header-top { display: flex; align-items: center; justify-content: space-between; }
-.header-nombre {
-  font-family: 'DM Serif Display', serif;
-  font-size: 24px; color: var(--texto);
-}
+.header-nombre { font-family: 'DM Serif Display', serif; font-size: 24px; color: var(--texto); }
 .header-nombre span { color: var(--verde); }
-.header-perfil-badge {
-  display: flex; align-items: center; gap: 7px;
-  background: var(--gris-light); border-radius: 20px;
-  padding: 5px 12px 5px 8px; cursor: pointer;
-  font-size: 13px; font-weight: 500; color: var(--gris);
-  border: none;
-}
-.header-perfil-badge .dot { width: 10px; height: 10px; border-radius: 50%; }
+.header-perfil-badge { display: flex; align-items: center; gap: 7px; background: var(--gris-light); border-radius: 20px; padding: 5px 12px 5px 8px; cursor: pointer; font-size: 13px; font-weight: 500; color: var(--gris); border: none; }
+.dot { width: 10px; height: 10px; border-radius: 50%; }
 .dot-sylvia { background: var(--verde); }
 .dot-marido { background: var(--naranja); }
 .header-fecha { font-size: 13px; color: var(--gris); margin-top: 2px; }
 
-/* NAV TABS */
-.nav-tabs {
-  display: flex;
-  background: var(--blanco);
-  border-bottom: 1px solid var(--borde);
-  flex-shrink: 0;
-}
-.tab-btn {
-  flex: 1; border: none; background: none;
-  padding: 10px 4px 8px;
-  font-family: 'DM Sans', sans-serif;
-  font-size: 11px; color: var(--gris);
-  cursor: pointer; display: flex; flex-direction: column;
-  align-items: center; gap: 3px;
-  border-bottom: 2px solid transparent;
-  transition: all 0.15s;
-}
+.nav-tabs { display: flex; background: var(--blanco); border-bottom: 1px solid var(--borde); flex-shrink: 0; }
+.tab-btn { flex: 1; border: none; background: none; padding: 10px 4px 8px; font-family: 'DM Sans', sans-serif; font-size: 11px; color: var(--gris); cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 3px; border-bottom: 2px solid transparent; transition: all 0.15s; }
 .tab-btn svg { width: 20px; height: 20px; stroke: var(--gris); fill: none; stroke-width: 1.8; }
 .tab-btn.active { color: var(--verde); border-bottom-color: var(--verde); }
 .tab-btn.active svg { stroke: var(--verde); }
 
-/* CONTENIDO */
 .contenido { flex: 1; overflow-y: auto; background: var(--crema); -webkit-overflow-scrolling: touch; }
 .pantalla { display: none; padding: 1rem; }
 .pantalla.activa { display: block; }
 
-/* CARDS */
-.card {
-  background: var(--blanco); border: 1px solid var(--borde);
-  border-radius: 16px; padding: 1rem 1.25rem; margin-bottom: 12px;
-  box-shadow: var(--sombra);
-}
+.card { background: var(--blanco); border: 1px solid var(--borde); border-radius: 16px; padding: 1rem 1.25rem; margin-bottom: 12px; box-shadow: var(--sombra); }
 .card-titulo { font-size: 12px; font-weight: 600; color: var(--gris); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 10px; }
 
-/* COMIDA HOY */
 .comida-item { padding: 10px 0; border-bottom: 1px solid var(--borde); }
 .comida-item:last-child { border-bottom: none; padding-bottom: 0; }
-.comida-hora { font-size: 11px; font-weight: 600; color: var(--gris); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 5px; }
 .comida-desc { font-size: 14px; color: var(--texto); line-height: 1.4; margin-bottom: 8px; }
 .opciones { display: flex; flex-wrap: wrap; gap: 6px; }
-.opcion-chip {
-  border: 1.5px solid var(--borde); background: var(--crema);
-  border-radius: 20px; padding: 4px 12px;
-  font-size: 12px; color: var(--gris); cursor: pointer;
-  transition: all 0.15s; font-family: 'DM Sans', sans-serif;
-}
+.opcion-chip { border: 1.5px solid var(--borde); background: var(--crema); border-radius: 20px; padding: 4px 12px; font-size: 12px; color: var(--gris); cursor: pointer; transition: all 0.15s; font-family: 'DM Sans', sans-serif; }
 .opcion-chip.elegida { background: var(--verde-light); border-color: var(--verde); color: var(--verde); font-weight: 500; }
 .opcion-chip.elegida::before { content: '✓ '; }
 
-/* SEMANA */
-.dia-card {
-  background: var(--blanco); border: 1px solid var(--borde);
-  border-radius: 14px; margin-bottom: 10px; overflow: hidden;
-  box-shadow: 0 1px 6px rgba(0,0,0,0.05);
-}
-.dia-header {
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 10px 14px; cursor: pointer;
-  border-bottom: 1px solid transparent; transition: all 0.15s;
-}
+.dia-card { background: var(--blanco); border: 1px solid var(--borde); border-radius: 14px; margin-bottom: 10px; overflow: hidden; box-shadow: 0 1px 6px rgba(0,0,0,0.05); }
+.dia-header { display: flex; align-items: center; justify-content: space-between; padding: 10px 14px; cursor: pointer; border-bottom: 1px solid transparent; transition: all 0.15s; }
 .dia-header.abierto { border-bottom-color: var(--borde); }
 .dia-nombre { font-size: 15px; font-weight: 600; }
 .dia-nombre.hoy { color: var(--verde); }
-.dia-resumen { font-size: 12px; color: var(--gris); }
+.dia-resumen { font-size: 12px; color: var(--gris); margin-top: 2px; }
 .dia-arrow { font-size: 16px; color: var(--gris); transition: transform 0.2s; }
 .dia-arrow.abierto { transform: rotate(180deg); }
 .dia-body { padding: 10px 14px; display: none; }
@@ -170,35 +95,17 @@ html, body { height: 100%; background: var(--crema); font-family: 'DM Sans', san
 .dia-comida-hora { font-size: 11px; font-weight: 600; color: var(--gris); text-transform: uppercase; letter-spacing: 0.05em; }
 .dia-comida-texto { font-size: 13px; color: var(--texto); margin-top: 3px; line-height: 1.4; }
 
-/* LISTA COMPRA */
-.lista-dia-titulo {
-  font-size: 13px; font-weight: 600; color: var(--verde);
-  text-transform: uppercase; letter-spacing: 0.05em;
-  margin: 14px 0 8px;
-}
-.lista-item {
-  display: flex; align-items: center; gap: 10px;
-  padding: 9px 0; border-bottom: 1px solid var(--borde);
-}
+.lista-dia-titulo { font-size: 13px; font-weight: 600; color: var(--verde); text-transform: uppercase; letter-spacing: 0.05em; margin: 14px 0 8px; }
+.lista-item { display: flex; align-items: center; gap: 10px; padding: 9px 0; border-bottom: 1px solid var(--borde); }
 .lista-item:last-child { border-bottom: none; }
-.lista-check {
-  width: 20px; height: 20px; border-radius: 50%;
-  border: 1.5px solid var(--borde); background: var(--blanco);
-  display: flex; align-items: center; justify-content: center;
-  cursor: pointer; flex-shrink: 0; transition: all 0.15s;
-}
+.lista-check { width: 20px; height: 20px; border-radius: 50%; border: 1.5px solid var(--borde); background: var(--blanco); display: flex; align-items: center; justify-content: center; cursor: pointer; flex-shrink: 0; transition: all 0.15s; }
 .lista-check.marcado { background: var(--verde); border-color: var(--verde); }
 .lista-check.marcado::after { content: '✓'; color: white; font-size: 11px; }
 .lista-nombre { font-size: 14px; color: var(--texto); }
 .lista-nombre.marcado { text-decoration: line-through; color: var(--gris); }
-.lista-categoria { font-size: 11px; color: var(--gris); margin-left: auto; }
 
-/* EVOLUCIÓN */
 .evol-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px; }
-.evol-stat {
-  background: var(--crema); border-radius: 12px;
-  padding: 12px 14px; border: 1px solid var(--borde);
-}
+.evol-stat { background: var(--crema); border-radius: 12px; padding: 12px 14px; border: 1px solid var(--borde); }
 .evol-label { font-size: 11px; color: var(--gris); font-weight: 500; text-transform: uppercase; letter-spacing: 0.04em; }
 .evol-valor { font-size: 24px; font-weight: 600; color: var(--texto); margin-top: 2px; }
 .evol-unidad { font-size: 13px; font-weight: 400; color: var(--gris); }
@@ -206,55 +113,36 @@ html, body { height: 100%; background: var(--crema); font-family: 'DM Sans', san
 .evol-cambio.mejor { color: var(--verde); }
 .evol-cambio.peor { color: var(--naranja); }
 
-/* FORMULARIO NUEVA MEDICIÓN */
 .form-grupo { margin-bottom: 12px; }
 .form-label { font-size: 13px; font-weight: 500; color: var(--gris); margin-bottom: 5px; display: block; }
-.form-input {
-  width: 100%; border: 1.5px solid var(--borde); border-radius: 10px;
-  padding: 9px 12px; font-size: 15px; font-family: 'DM Sans', sans-serif;
-  color: var(--texto); background: var(--blanco);
-  transition: border-color 0.15s; outline: none;
-}
+.form-input { width: 100%; border: 1.5px solid var(--borde); border-radius: 10px; padding: 9px 12px; font-size: 15px; font-family: 'DM Sans', sans-serif; color: var(--texto); background: var(--blanco); transition: border-color 0.15s; outline: none; }
 .form-input:focus { border-color: var(--verde); }
 .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-.btn-guardar {
-  width: 100%; background: var(--verde); color: white;
-  border: none; border-radius: 12px; padding: 13px;
-  font-size: 15px; font-weight: 600; font-family: 'DM Sans', sans-serif;
-  cursor: pointer; transition: all 0.15s; margin-top: 4px;
-}
+.btn-guardar { width: 100%; background: var(--verde); color: white; border: none; border-radius: 12px; padding: 13px; font-size: 15px; font-weight: 600; font-family: 'DM Sans', sans-serif; cursor: pointer; transition: all 0.15s; margin-top: 4px; }
 .btn-guardar:active { transform: scale(0.98); background: #235f3d; }
+.btn-secundario { width: 100%; background: var(--blanco); color: var(--verde); border: 1.5px solid var(--verde); border-radius: 12px; padding: 11px; font-size: 14px; font-weight: 600; font-family: 'DM Sans', sans-serif; cursor: pointer; transition: all 0.15s; margin-top: 8px; }
 
-/* MINI GRAFICA */
-.grafica-wrap { margin-top: 8px; overflow-x: auto; }
-.grafica-svg { min-width: 100%; }
+.quincena-badge { display: inline-block; background: var(--verde-light); color: var(--verde); font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 20px; margin-bottom: 12px; }
 
-/* ESTADOS */
-.empty-state { text-align: center; padding: 2.5rem 1rem; color: var(--gris); }
-.empty-state .icon { font-size: 40px; margin-bottom: 10px; }
-.empty-state p { font-size: 14px; line-height: 1.5; }
-
-/* BADGE QUINCENA */
-.quincena-badge {
-  display: inline-block; background: var(--verde-light);
-  color: var(--verde); font-size: 11px; font-weight: 600;
-  padding: 3px 10px; border-radius: 20px; margin-bottom: 12px;
-}
-
-/* NOTIF */
-.notif {
-  position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
-  background: var(--verde); color: white; padding: 10px 20px;
-  border-radius: 20px; font-size: 13px; font-weight: 500;
-  z-index: 1000; opacity: 0; transition: opacity 0.3s;
-  white-space: nowrap; pointer-events: none;
-}
+.notif { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); background: var(--verde); color: white; padding: 10px 20px; border-radius: 20px; font-size: 13px; font-weight: 500; z-index: 1000; opacity: 0; transition: opacity 0.3s; white-space: nowrap; pointer-events: none; }
 .notif.show { opacity: 1; }
+
+/* CARGA PDF */
+.upload-zone { border: 2px dashed var(--verde-mid); border-radius: 16px; padding: 2rem; text-align: center; cursor: pointer; transition: all 0.2s; background: var(--verde-light); }
+.upload-zone:hover { border-color: var(--verde); }
+.upload-icon { font-size: 40px; margin-bottom: 10px; }
+.upload-titulo { font-size: 16px; font-weight: 600; color: var(--verde); margin-bottom: 6px; }
+.upload-sub { font-size: 13px; color: var(--gris); line-height: 1.4; }
+.upload-input { display: none; }
+.procesando { text-align: center; padding: 2rem; }
+.procesando-icon { font-size: 36px; animation: spin 1.5s linear infinite; display: inline-block; }
+@keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+.procesando-txt { font-size: 15px; color: var(--gris); margin-top: 12px; }
+.dieta-cargada-badge { display: inline-flex; align-items: center; gap: 6px; background: var(--verde-light); color: var(--verde); font-size: 12px; font-weight: 600; padding: 5px 12px; border-radius: 20px; margin-bottom: 12px; }
 </style>
 </head>
 <body>
 
-<!-- PANTALLA SELECCIÓN PERFIL -->
 <div id="pantalla-perfil">
   <div class="logo-titulo">MiDieta <span>Fit</span></div>
   <div class="logo-sub">Tu plan nutricional personalizado</div>
@@ -277,7 +165,6 @@ html, body { height: 100%; background: var(--crema); font-family: 'DM Sans', san
   </div>
 </div>
 
-<!-- APP PRINCIPAL -->
 <div id="app">
   <div class="header">
     <div class="header-top">
@@ -308,36 +195,23 @@ html, body { height: 100%; background: var(--crema); font-family: 'DM Sans', san
       <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
       Evolución
     </button>
+    <button class="tab-btn" onclick="irTab('dieta',this)" id="tab-btn-dieta">
+      <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+      Dieta
+    </button>
   </div>
 
   <div class="contenido">
-
-    <!-- HOY -->
-    <div class="pantalla activa" id="tab-hoy">
-      <div id="hoy-contenido"></div>
-    </div>
-
-    <!-- SEMANA -->
-    <div class="pantalla" id="tab-semana">
-      <div id="semana-contenido"></div>
-    </div>
-
-    <!-- COMPRA -->
-    <div class="pantalla" id="tab-compra">
-      <div id="compra-contenido"></div>
-    </div>
-
-    <!-- EVOLUCIÓN -->
-    <div class="pantalla" id="tab-evolucion">
-      <div id="evolucion-contenido"></div>
-    </div>
-
+    <div class="pantalla activa" id="tab-hoy"><div id="hoy-contenido"></div></div>
+    <div class="pantalla" id="tab-semana"><div id="semana-contenido"></div></div>
+    <div class="pantalla" id="tab-compra"><div id="compra-contenido"></div></div>
+    <div class="pantalla" id="tab-evolucion"><div id="evolucion-contenido"></div></div>
+    <div class="pantalla" id="tab-dieta"><div id="dieta-contenido"></div></div>
   </div>
 </div>
 
 <div class="notif" id="notif"></div>
 
-<!-- FIREBASE -->
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import { getDatabase, ref, set, get, onValue } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
@@ -364,72 +238,18 @@ document.dispatchEvent(new Event('firebase-listo'));
 </script>
 
 <script>
-// ═══════════════════════════════════════
-// DATOS DE LA DIETA (1ª QUINCENA)
-// ═══════════════════════════════════════
-const DIETA = {
-  desayuno: {
-    fijo: "Descafeinado con leche desnatada/semi (xilitol) + Tostada integral con tomate y aceite",
-    opciones: ["Tomate y aceite", "¼ Aguacate + queso cottage"]
-  },
-  mediaTarde: {
-    fijo: "Queso batido 0% / Yogur proteínas + fruta + 3 nueces",
-    opcionesBase: ["Queso batido 0%", "Yogur con proteínas"],
-    opcionesFruta: ["Fresas", "Melón", "Pera", "Manzana", "Kiwi"]
-  },
-  postre: {
-    fijo: "Yogur proteínas natural + fruta + 1 onza chocolate 85%",
-    opciones: ["Fresas", "Arándanos"]
-  },
-  comidas: {
-    "Lunes":    { texto: "Espárragos verdes + Solomillo de cerdo plancha", opciones: [] },
-    "Martes":   { texto: "Setas/Champiñón salteado con gulas, ajo y cayena + Pescado blanco", opciones: ["Setas", "Champiñón"] },
-    "Miércoles":{ texto: "Lentejas con verduras", opciones: [] },
-    "Jueves":   { texto: "Acelgas/Espinacas con huevo + Pescado blanco al horno/plancha", opciones: ["Acelgas", "Espinacas"] },
-    "Viernes":  { texto: "Filetes de pechuga de pollo a la plancha con sofrito de puerro y calabacín", opciones: [] },
-    "Sábado":   { texto: "Parrillada de verduras + Sepia/Calamar plancha con ajo y perejil", opciones: ["Sepia", "Calamar"] },
-    "Domingo":  { texto: "Fajitas de pollo con cebolla, pimiento rojo y verde y guacamole", opciones: [] }
-  },
-  cenas: {
-    "Lunes":    { texto: "Ensalada pepino y zanahoria + Mejillones al vapor/vinagreta", opciones: ["Al vapor", "Vinagreta"] },
-    "Martes":   { texto: "Ensalada hoja verde, pepino, zanahoria, melón y pollo desmenuzado", opciones: [] },
-    "Miércoles":{ texto: "Gazpacho sin pan/Salmorejo + Tortilla de cebolla y calabacín", opciones: ["Gazpacho", "Salmorejo"] },
-    "Jueves":   { texto: "Ensalada hoja verde, pepino, zanahoria, melón y pollo desmenuzado", opciones: [] },
-    "Viernes":  { texto: "Ensalada pepino y zanahoria + Mejillones al vapor/vinagreta", opciones: ["Al vapor", "Vinagreta"] },
-    "Sábado":   { texto: "¡Sábado libre! 🎉", opciones: [] },
-    "Domingo":  { texto: "Gazpacho sin pan/Salmorejo + Tortilla de cebolla y calabacín", opciones: ["Gazpacho", "Salmorejo"] }
-  }
-};
-
 const DIAS = ["Lunes","Martes","Miércoles","Jueves","Viernes","Sábado","Domingo"];
 
-// Frescos por día (base)
-const FRESCOS = {
-  "Lunes":    ["Espárragos verdes","Solomillo de cerdo","Pepino","Zanahoria","Mejillones","Leche desnatada/semi","Tomate"],
-  "Martes":   ["Setas o Champiñón","Gulas","Pescado blanco","Lechuga/hoja verde","Pepino","Zanahoria","Melón","Pechuga de pollo (para ensalada)"],
-  "Miércoles":["Lentejas","Verduras para caldo","Cebolla","Calabacín","Huevos","Tomate","Zanahoria"],
-  "Jueves":   ["Acelgas o Espinacas","Huevos","Pescado blanco","Lechuga/hoja verde","Pepino","Zanahoria","Melón","Pechuga de pollo"],
-  "Viernes":  ["Pechuga de pollo (filetes)","Puerro","Calabacín","Pepino","Zanahoria","Mejillones","Tomate"],
-  "Sábado":   ["Verduras variadas (parrilla)","Sepia o Calamar","Ajo","Perejil"],
-  "Domingo":  ["Pechuga de pollo","Cebolla","Pimiento rojo","Pimiento verde","Aguacate (guacamole)","Tomate","Zanahoria"]
-};
-
-// ═══════════════════════════════════════
-// ESTADO GLOBAL
-// ═══════════════════════════════════════
 let perfilActual = null;
 let elecciones = {};
 let mediciones = [];
 let listaCompra = {};
+let dietaActual = null;
 
-// ═══════════════════════════════════════
-// UTILIDADES
-// ═══════════════════════════════════════
 function getDiaSemana() {
   const d = new Date();
-  const idx = d.getDay();
   const map = [6,0,1,2,3,4,5];
-  return DIAS[map[idx]];
+  return DIAS[map[d.getDay()]];
 }
 function getFechaTexto() {
   return new Date().toLocaleDateString('es-ES', {weekday:'long', day:'numeric', month:'long'});
@@ -438,26 +258,17 @@ function mostrarNotif(txt) {
   const n = document.getElementById('notif');
   n.textContent = txt;
   n.classList.add('show');
-  setTimeout(() => n.classList.remove('show'), 2200);
+  setTimeout(() => n.classList.remove('show'), 2500);
 }
-
-// ═══════════════════════════════════════
-// FIREBASE HELPERS
-// ═══════════════════════════════════════
 function guardarFirebase(path, data) {
   if (!window.fbListo) return;
   window.dbSet(window.dbRef(window.db, path), data);
 }
 function cargarFirebase(path, callback) {
   if (!window.fbListo) { callback(null); return; }
-  window.dbOnValue(window.dbRef(window.db, path), snap => {
-    callback(snap.val());
-  });
+  window.dbOnValue(window.dbRef(window.db, path), snap => callback(snap.val()));
 }
 
-// ═══════════════════════════════════════
-// ENTRADA / SALIDA
-// ═══════════════════════════════════════
 window.entrar = function(perfil) {
   perfilActual = perfil;
   document.getElementById('pantalla-perfil').style.display = 'none';
@@ -466,7 +277,6 @@ window.entrar = function(perfil) {
   document.getElementById('dot-perfil').className = 'dot dot-' + (perfil === 'sylvia' ? 'sylvia' : 'marido');
   document.getElementById('header-fecha').textContent = getFechaTexto();
 
-  // Cargar datos de Firebase
   cargarFirebase('elecciones/' + perfil, data => {
     elecciones = data || {};
     renderHoy();
@@ -480,6 +290,13 @@ window.entrar = function(perfil) {
   cargarFirebase('listaCompra/' + perfil, data => {
     listaCompra = data || {};
   });
+  cargarFirebase('dieta', data => {
+    dietaActual = data || null;
+    renderDieta();
+    renderHoy();
+    renderSemana();
+    renderCompra();
+  });
 };
 
 window.cerrarSesion = function() {
@@ -488,63 +305,223 @@ window.cerrarSesion = function() {
   document.getElementById('app').style.display = 'none';
 };
 
-// ═══════════════════════════════════════
-// TABS
-// ═══════════════════════════════════════
 window.irTab = function(tab, btn) {
   document.querySelectorAll('.pantalla').forEach(p => p.classList.remove('activa'));
   document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
   document.getElementById('tab-' + tab).classList.add('activa');
   btn.classList.add('active');
-  if (tab === 'compra') renderCompra();
-  if (tab === 'evolucion') renderEvolucion();
 };
 
-// ═══════════════════════════════════════
+// ═══════════════════════════════
+// PESTAÑA DIETA — SUBIR PDF
+// ═══════════════════════════════
+function renderDieta() {
+  const c = document.getElementById('dieta-contenido');
+
+  if (dietaActual) {
+    const quincena = dietaActual.quincena || '?';
+    let html = `<div class="dieta-cargada-badge">✅ Dieta cargada · ${quincena}</div>
+    <div class="card" style="margin-bottom:12px;">
+      <div class="card-titulo">Dieta activa</div>
+      <div style="font-size:14px;color:var(--texto);line-height:1.6;">${dietaActual.resumen || ''}</div>
+    </div>
+    <button class="btn-secundario" onclick="mostrarUpload()">📄 Cargar nueva dieta (PDF)</button>`;
+    c.innerHTML = html;
+  } else {
+    c.innerHTML = `
+    <div style="margin-bottom:12px;">
+      <div style="font-size:15px;font-weight:600;color:var(--texto);margin-bottom:4px;">Carga tu dieta</div>
+      <div style="font-size:13px;color:var(--gris);">Sube el PDF que te manda tu nutricionista y la app lo leerá automáticamente.</div>
+    </div>
+    <div id="upload-area">
+      <div class="upload-zone" onclick="document.getElementById('pdf-input').click()">
+        <div class="upload-icon">📄</div>
+        <div class="upload-titulo">Subir PDF de la dieta</div>
+        <div class="upload-sub">Toca aquí para seleccionar el archivo PDF de tu nutricionista</div>
+      </div>
+      <input type="file" accept="application/pdf" class="upload-input" id="pdf-input" onchange="procesarPDF(this)">
+    </div>`;
+  }
+}
+
+window.mostrarUpload = function() {
+  document.getElementById('dieta-contenido').innerHTML = `
+    <div style="margin-bottom:12px;">
+      <div style="font-size:15px;font-weight:600;color:var(--texto);margin-bottom:4px;">Cargar nueva dieta</div>
+      <div style="font-size:13px;color:var(--gris);">Sube el nuevo PDF de tu nutricionista.</div>
+    </div>
+    <div class="upload-zone" onclick="document.getElementById('pdf-input').click()">
+      <div class="upload-icon">📄</div>
+      <div class="upload-titulo">Seleccionar PDF</div>
+      <div class="upload-sub">Toca aquí para seleccionar el archivo</div>
+    </div>
+    <input type="file" accept="application/pdf" class="upload-input" id="pdf-input" onchange="procesarPDF(this)">`;
+};
+
+window.procesarPDF = async function(input) {
+  const file = input.files[0];
+  if (!file) return;
+
+  document.getElementById('dieta-contenido').innerHTML = `
+    <div class="procesando">
+      <div class="procesando-icon">⚙️</div>
+      <div class="procesando-txt">Analizando el PDF con IA...<br>Esto puede tardar unos segundos</div>
+    </div>`;
+
+  try {
+    const base64 = await fileToBase64(file);
+
+    const prompt = `Analiza este PDF de dieta nutricional y extrae la información en formato JSON estricto.
+
+Devuelve SOLO el JSON, sin texto adicional, sin markdown, sin bloques de código.
+
+El formato debe ser exactamente este:
+{
+  "quincena": "texto como 1ª Quincena o 2ª Quincena",
+  "resumen": "descripción breve del objetivo de la dieta en 1-2 frases",
+  "desayuno": {
+    "descripcion": "texto del desayuno",
+    "opciones": ["opcion1", "opcion2"]
+  },
+  "mediaTarde": {
+    "descripcion": "texto de media tarde",
+    "opciones": ["opcion1", "opcion2"]
+  },
+  "postre": {
+    "descripcion": "texto del postre/recena",
+    "opciones": ["opcion1", "opcion2"]
+  },
+  "comidas": {
+    "Lunes": {"texto": "descripcion comida lunes", "opciones": []},
+    "Martes": {"texto": "descripcion comida martes", "opciones": ["op1","op2"]},
+    "Miércoles": {"texto": "descripcion", "opciones": []},
+    "Jueves": {"texto": "descripcion", "opciones": ["op1","op2"]},
+    "Viernes": {"texto": "descripcion", "opciones": []},
+    "Sábado": {"texto": "descripcion", "opciones": ["op1","op2"]},
+    "Domingo": {"texto": "descripcion", "opciones": []}
+  },
+  "cenas": {
+    "Lunes": {"texto": "descripcion cena lunes", "opciones": []},
+    "Martes": {"texto": "descripcion", "opciones": []},
+    "Miércoles": {"texto": "descripcion", "opciones": ["op1","op2"]},
+    "Jueves": {"texto": "descripcion", "opciones": []},
+    "Viernes": {"texto": "descripcion", "opciones": []},
+    "Sábado": {"texto": "LIBRE", "opciones": []},
+    "Domingo": {"texto": "descripcion", "opciones": ["op1","op2"]}
+  },
+  "frescos": {
+    "Lunes": ["ingrediente1", "ingrediente2"],
+    "Martes": ["ingrediente1"],
+    "Miércoles": ["ingrediente1"],
+    "Jueves": ["ingrediente1"],
+    "Viernes": ["ingrediente1"],
+    "Sábado": ["ingrediente1"],
+    "Domingo": ["ingrediente1"]
+  }
+}
+
+Para "opciones": incluye solo las alternativas que ofrece la dieta separadas por "/" o "o". Si no hay opciones, usa array vacío.
+Para "frescos": lista los ingredientes frescos necesarios para la comida y cena de cada día.`;
+
+    const response = await fetch("https://api.anthropic.com/v1/messages", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        model: "claude-sonnet-4-20250514",
+        max_tokens: 2000,
+        messages: [{
+          role: "user",
+          content: [
+            { type: "document", source: { type: "base64", media_type: "application/pdf", data: base64 } },
+            { type: "text", text: prompt }
+          ]
+        }]
+      })
+    });
+
+    const data = await response.json();
+    const texto = data.content[0].text.trim();
+    const clean = texto.replace(/```json|```/g, '').trim();
+    const dieta = JSON.parse(clean);
+    dieta.cargadoEl = new Date().toLocaleDateString('es-ES');
+
+    dietaActual = dieta;
+    guardarFirebase('dieta', dieta);
+    mostrarNotif('✅ Dieta cargada correctamente');
+    renderDieta();
+    renderHoy();
+    renderSemana();
+    renderCompra();
+
+  } catch (err) {
+    document.getElementById('dieta-contenido').innerHTML = `
+      <div class="card" style="border-color:#f5c4b3;">
+        <div style="color:#D85A30;font-weight:600;margin-bottom:8px;">Error al procesar el PDF</div>
+        <div style="font-size:13px;color:var(--gris);">Asegúrate de que el PDF es el de tu nutricionista e inténtalo de nuevo.</div>
+        <button class="btn-guardar" style="margin-top:12px;" onclick="renderDieta()">Intentar de nuevo</button>
+      </div>`;
+    console.error(err);
+  }
+};
+
+function fileToBase64(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(reader.result.split(',')[1]);
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+}
+
+// ═══════════════════════════════
 // RENDER HOY
-// ═══════════════════════════════════════
+// ═══════════════════════════════
 function renderHoy() {
   const dia = getDiaSemana();
   const c = document.getElementById('hoy-contenido');
 
-  const comida = DIETA.comidas[dia];
-  const cena = DIETA.cenas[dia];
+  if (!dietaActual) {
+    c.innerHTML = `<div class="card" style="text-align:center;padding:2rem;">
+      <div style="font-size:36px;margin-bottom:10px;">📄</div>
+      <div style="font-size:15px;font-weight:600;color:var(--texto);margin-bottom:6px;">Sin dieta cargada</div>
+      <div style="font-size:13px;color:var(--gris);margin-bottom:16px;">Ve a la pestaña "Dieta" y sube el PDF de tu nutricionista para ver el menú de hoy.</div>
+      <button class="btn-guardar" onclick="irTabDieta()">Ir a cargar dieta</button>
+    </div>`;
+    return;
+  }
 
-  let html = `<div class="quincena-badge">1ª Quincena · ${dia}</div>`;
+  const comida = dietaActual.comidas[dia] || {texto:'–', opciones:[]};
+  const cena = dietaActual.cenas[dia] || {texto:'–', opciones:[]};
 
-  // Desayuno
-  html += renderComidaCard('Desayuno ☕', DIETA.desayuno.fijo, DIETA.desayuno.opciones, 'desayuno', dia);
-  // Comida
-  html += renderComidaCard('Comida 🍽️', comida.texto, comida.opciones, 'comida', dia);
-  // Media tarde
-  html += renderComidaCard('Media tarde 🍎', DIETA.mediaTarde.fijo, [...DIETA.mediaTarde.opcionesBase, ...DIETA.mediaTarde.opcionesFruta], 'mediaTarde', dia);
-  // Cena
-  html += renderComidaCard('Cena 🌙', cena.texto, cena.opciones, 'cena', dia);
-  // Postre
-  html += renderComidaCard('Postre / recena 🍫', DIETA.postre.fijo, DIETA.postre.opciones, 'postre', dia);
+  let html = `<div class="quincena-badge">${dietaActual.quincena || 'Dieta'} · ${dia}</div>`;
+  html += renderComidaCard('Desayuno ☕', dietaActual.desayuno?.descripcion || '–', dietaActual.desayuno?.opciones || [], 'desayuno', dia);
+  html += renderComidaCard('Comida 🍽️', comida.texto, comida.opciones || [], 'comida', dia);
+  html += renderComidaCard('Media tarde 🍎', dietaActual.mediaTarde?.descripcion || '–', dietaActual.mediaTarde?.opciones || [], 'mediaTarde', dia);
+  html += renderComidaCard('Cena 🌙', cena.texto, cena.opciones || [], 'cena', dia);
+  html += renderComidaCard('Postre / recena 🍫', dietaActual.postre?.descripcion || '–', dietaActual.postre?.opciones || [], 'postre', dia);
 
   c.innerHTML = html;
 }
 
+window.irTabDieta = function() {
+  document.querySelectorAll('.pantalla').forEach(p => p.classList.remove('activa'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-dieta').classList.add('activa');
+  document.getElementById('tab-btn-dieta').classList.add('active');
+};
+
 function renderComidaCard(titulo, texto, opciones, tipo, dia) {
   const key = dia + '_' + tipo;
   const elegida = elecciones[key] || null;
-
   let chipsHtml = '';
   if (opciones.length > 0) {
     chipsHtml = '<div class="opciones">' +
       opciones.map(op => {
         const sel = elegida === op ? ' elegida' : '';
-        return `<button class="opcion-chip${sel}" onclick="elegirOpcion('${dia}','${tipo}','${op}')">${op}</button>`;
-      }).join('') +
-      '</div>';
+        return `<button class="opcion-chip${sel}" onclick="elegirOpcion('${dia}','${tipo}','${op.replace(/'/g,"\\'")}')"> ${op}</button>`;
+      }).join('') + '</div>';
   }
-
-  return `<div class="card">
-    <div class="card-titulo">${titulo}</div>
-    <div class="comida-desc">${texto}</div>
-    ${chipsHtml}
-  </div>`;
+  return `<div class="card"><div class="card-titulo">${titulo}</div><div class="comida-desc">${texto}</div>${chipsHtml}</div>`;
 }
 
 window.elegirOpcion = function(dia, tipo, opcion) {
@@ -556,53 +533,37 @@ window.elegirOpcion = function(dia, tipo, opcion) {
   mostrarNotif('✓ Guardado');
 };
 
-// ═══════════════════════════════════════
+// ═══════════════════════════════
 // RENDER SEMANA
-// ═══════════════════════════════════════
+// ═══════════════════════════════
 function renderSemana() {
   const hoy = getDiaSemana();
+  if (!dietaActual) {
+    document.getElementById('semana-contenido').innerHTML = `<div class="card" style="text-align:center;padding:2rem;"><div style="font-size:36px;margin-bottom:10px;">📄</div><div style="font-size:14px;color:var(--gris);">Carga la dieta primero desde la pestaña "Dieta"</div></div>`;
+    return;
+  }
   let html = '<div style="margin-bottom:4px;"></div>';
-
   DIAS.forEach(dia => {
     const esHoy = dia === hoy;
-    const comida = DIETA.comidas[dia];
-    const cena = DIETA.cenas[dia];
-    const kcDesayuno = elecciones[dia+'_desayuno'] || '–';
-    const kcComida = elecciones[dia+'_comida'] || '–';
-
+    const comida = dietaActual.comidas[dia] || {texto:'–'};
+    const cena = dietaActual.cenas[dia] || {texto:'–'};
     html += `<div class="dia-card">
-      <div class="dia-header ${esHoy ? 'abierto' : ''}" onclick="toggleDia(this)" id="dia-${dia}">
+      <div class="dia-header ${esHoy?'abierto':''}" onclick="toggleDia(this)">
         <div>
-          <div class="dia-nombre${esHoy ? ' hoy' : ''}">${dia}${esHoy ? ' · HOY' : ''}</div>
-          <div class="dia-resumen">${comida.texto.substring(0,40)}...</div>
+          <div class="dia-nombre${esHoy?' hoy':''}">${dia}${esHoy?' · HOY':''}</div>
+          <div class="dia-resumen">${comida.texto.substring(0,42)}...</div>
         </div>
-        <div class="dia-arrow ${esHoy ? 'abierto' : ''}">▾</div>
+        <div class="dia-arrow ${esHoy?'abierto':''}">▾</div>
       </div>
-      <div class="dia-body ${esHoy ? 'abierto' : ''}">
-        <div class="dia-comida">
-          <div class="dia-comida-hora">Desayuno</div>
-          <div class="dia-comida-texto">${DIETA.desayuno.fijo}</div>
-        </div>
-        <div class="dia-comida">
-          <div class="dia-comida-hora">Comida</div>
-          <div class="dia-comida-texto">${comida.texto}</div>
-        </div>
-        <div class="dia-comida">
-          <div class="dia-comida-hora">Media tarde</div>
-          <div class="dia-comida-texto">${DIETA.mediaTarde.fijo}</div>
-        </div>
-        <div class="dia-comida">
-          <div class="dia-comida-hora">Cena</div>
-          <div class="dia-comida-texto">${cena.texto}</div>
-        </div>
-        <div class="dia-comida">
-          <div class="dia-comida-hora">Postre / recena</div>
-          <div class="dia-comida-texto">${DIETA.postre.fijo}</div>
-        </div>
+      <div class="dia-body ${esHoy?'abierto':''}">
+        <div class="dia-comida"><div class="dia-comida-hora">Desayuno</div><div class="dia-comida-texto">${dietaActual.desayuno?.descripcion||'–'}</div></div>
+        <div class="dia-comida"><div class="dia-comida-hora">Comida</div><div class="dia-comida-texto">${comida.texto}</div></div>
+        <div class="dia-comida"><div class="dia-comida-hora">Media tarde</div><div class="dia-comida-texto">${dietaActual.mediaTarde?.descripcion||'–'}</div></div>
+        <div class="dia-comida"><div class="dia-comida-hora">Cena</div><div class="dia-comida-texto">${cena.texto}</div></div>
+        <div class="dia-comida"><div class="dia-comida-hora">Postre / recena</div><div class="dia-comida-texto">${dietaActual.postre?.descripcion||'–'}</div></div>
       </div>
     </div>`;
   });
-
   document.getElementById('semana-contenido').innerHTML = html;
 }
 
@@ -615,30 +576,30 @@ window.toggleDia = function(header) {
   header.classList.toggle('abierto', !abierto);
 };
 
-// ═══════════════════════════════════════
+// ═══════════════════════════════
 // RENDER COMPRA
-// ═══════════════════════════════════════
+// ═══════════════════════════════
 function renderCompra() {
   const hoy = getDiaSemana();
   const hoyIdx = DIAS.indexOf(hoy);
   const diasRestantes = DIAS.slice(hoyIdx);
 
-  let html = `<div style="margin-bottom:4px;"></div>
-  <div class="card" style="margin-bottom:14px;">
-    <div class="card-titulo">Frescos de hoy en adelante</div>
-    <div style="font-size:13px;color:var(--gris);margin-top:-4px;">Solo lo que necesitas comprar fresco</div>
-  </div>`;
+  if (!dietaActual) {
+    document.getElementById('compra-contenido').innerHTML = `<div class="card" style="text-align:center;padding:2rem;"><div style="font-size:36px;margin-bottom:10px;">🛒</div><div style="font-size:14px;color:var(--gris);">Carga la dieta primero para ver la lista de la compra</div></div>`;
+    return;
+  }
+
+  let html = `<div class="card" style="margin-bottom:14px;"><div class="card-titulo">Frescos de hoy en adelante</div><div style="font-size:13px;color:var(--gris);margin-top:-4px;">Solo lo que necesitas comprar fresco</div></div>`;
 
   diasRestantes.forEach(dia => {
-    const items = FRESCOS[dia] || [];
+    const items = (dietaActual.frescos && dietaActual.frescos[dia]) || [];
     if (items.length === 0) return;
-    html += `<div class="lista-dia-titulo">${dia}${dia === hoy ? ' · HOY' : ''}</div>
-    <div class="card">`;
+    html += `<div class="lista-dia-titulo">${dia}${dia===hoy?' · HOY':''}</div><div class="card">`;
     items.forEach((item, i) => {
       const key = dia + '_' + i;
       const marcado = listaCompra[key] ? ' marcado' : '';
       html += `<div class="lista-item">
-        <div class="lista-check${marcado}" onclick="toggleCompra('${dia}','${i}','${item}')"></div>
+        <div class="lista-check${marcado}" onclick="toggleCompra('${dia}','${i}')"></div>
         <span class="lista-nombre${marcado}">${item}</span>
       </div>`;
     });
@@ -648,16 +609,16 @@ function renderCompra() {
   document.getElementById('compra-contenido').innerHTML = html;
 }
 
-window.toggleCompra = function(dia, i, item) {
+window.toggleCompra = function(dia, i) {
   const key = dia + '_' + i;
   listaCompra[key] = !listaCompra[key];
   guardarFirebase('listaCompra/' + perfilActual, listaCompra);
   renderCompra();
 };
 
-// ═══════════════════════════════════════
-// RENDER EVOLUCIÓN
-// ═══════════════════════════════════════
+// ═══════════════════════════════
+// EVOLUCIÓN
+// ═══════════════════════════════
 function renderEvolucion() {
   const inicio = { peso: 86.2, grasa: 41.9, agua: 43.2, musculo: 47.5, visceral: 9 };
   const ultima = mediciones.length > 0 ? mediciones[mediciones.length - 1] : null;
@@ -666,78 +627,35 @@ function renderEvolucion() {
   function cambio(campo) {
     if (!ultima) return '<span style="color:var(--gris);font-size:11px;">Inicio</span>';
     const diff = (parseFloat(ultima[campo]) - parseFloat(inicio[campo])).toFixed(1);
-    const bueno = (campo === 'grasa' || campo === 'visceral' || campo === 'peso') ? diff < 0 : diff > 0;
-    const clase = bueno ? 'mejor' : 'peor';
+    const bueno = (campo==='grasa'||campo==='visceral'||campo==='peso') ? diff<0 : diff>0;
     const signo = diff > 0 ? '+' : '';
-    return `<span class="evol-cambio ${clase}">${signo}${diff} vs inicio</span>`;
+    return `<span class="evol-cambio ${bueno?'mejor':'peor'}">${signo}${diff} vs inicio</span>`;
   }
 
-  let html = `<div class="quincena-badge">Medición inicial</div>
+  let html = `<div class="quincena-badge">Medición inicial · ${inicio.peso} kg</div>
   <div class="evol-grid">
-    <div class="evol-stat">
-      <div class="evol-label">Peso</div>
-      <div class="evol-valor">${actual.peso}<span class="evol-unidad"> kg</span></div>
-      ${cambio('peso')}
-    </div>
-    <div class="evol-stat">
-      <div class="evol-label">% Grasa</div>
-      <div class="evol-valor">${actual.grasa}<span class="evol-unidad"> %</span></div>
-      ${cambio('grasa')}
-    </div>
-    <div class="evol-stat">
-      <div class="evol-label">Kg músculo</div>
-      <div class="evol-valor">${actual.musculo}<span class="evol-unidad"> kg</span></div>
-      ${cambio('musculo')}
-    </div>
-    <div class="evol-stat">
-      <div class="evol-label">% Agua</div>
-      <div class="evol-valor">${actual.agua}<span class="evol-unidad"> %</span></div>
-      ${cambio('agua')}
-    </div>
-    <div class="evol-stat">
-      <div class="evol-label">Grasa visceral</div>
-      <div class="evol-valor">${actual.visceral}<span class="evol-unidad"> kg</span></div>
-      ${cambio('visceral')}
-    </div>
-  </div>`;
-
-  // Formulario nueva medición
-  html += `<div class="card">
+    <div class="evol-stat"><div class="evol-label">Peso</div><div class="evol-valor">${actual.peso}<span class="evol-unidad"> kg</span></div>${cambio('peso')}</div>
+    <div class="evol-stat"><div class="evol-label">% Grasa</div><div class="evol-valor">${actual.grasa}<span class="evol-unidad"> %</span></div>${cambio('grasa')}</div>
+    <div class="evol-stat"><div class="evol-label">Kg músculo</div><div class="evol-valor">${actual.musculo}<span class="evol-unidad"> kg</span></div>${cambio('musculo')}</div>
+    <div class="evol-stat"><div class="evol-label">% Agua</div><div class="evol-valor">${actual.agua}<span class="evol-unidad"> %</span></div>${cambio('agua')}</div>
+    <div class="evol-stat"><div class="evol-label">Grasa visceral</div><div class="evol-valor">${actual.visceral}<span class="evol-unidad"> kg</span></div>${cambio('visceral')}</div>
+  </div>
+  <div class="card">
     <div class="card-titulo">Nueva medición (cada 15 días)</div>
     <div class="form-grid">
-      <div class="form-grupo">
-        <label class="form-label">Peso (kg)</label>
-        <input class="form-input" type="number" step="0.1" id="m-peso" placeholder="86.2">
-      </div>
-      <div class="form-grupo">
-        <label class="form-label">% Grasa</label>
-        <input class="form-input" type="number" step="0.1" id="m-grasa" placeholder="41.9">
-      </div>
-      <div class="form-grupo">
-        <label class="form-label">% Agua</label>
-        <input class="form-input" type="number" step="0.1" id="m-agua" placeholder="43.2">
-      </div>
-      <div class="form-grupo">
-        <label class="form-label">Kg músculo</label>
-        <input class="form-input" type="number" step="0.1" id="m-musculo" placeholder="47.5">
-      </div>
-      <div class="form-grupo">
-        <label class="form-label">Grasa visceral</label>
-        <input class="form-input" type="number" step="0.1" id="m-visceral" placeholder="9">
-      </div>
+      <div class="form-grupo"><label class="form-label">Peso (kg)</label><input class="form-input" type="number" step="0.1" id="m-peso" placeholder="${inicio.peso}"></div>
+      <div class="form-grupo"><label class="form-label">% Grasa</label><input class="form-input" type="number" step="0.1" id="m-grasa" placeholder="${inicio.grasa}"></div>
+      <div class="form-grupo"><label class="form-label">% Agua</label><input class="form-input" type="number" step="0.1" id="m-agua" placeholder="${inicio.agua}"></div>
+      <div class="form-grupo"><label class="form-label">Kg músculo</label><input class="form-input" type="number" step="0.1" id="m-musculo" placeholder="${inicio.musculo}"></div>
+      <div class="form-grupo"><label class="form-label">Grasa visceral</label><input class="form-input" type="number" step="0.1" id="m-visceral" placeholder="${inicio.visceral}"></div>
     </div>
     <button class="btn-guardar" onclick="guardarMedicion()">Guardar medición</button>
   </div>`;
 
-  // Historial
   if (mediciones.length > 0) {
-    html += `<div class="card">
-      <div class="card-titulo">Historial</div>`;
+    html += `<div class="card"><div class="card-titulo">Historial</div>`;
     mediciones.slice().reverse().forEach(m => {
-      html += `<div style="padding:8px 0;border-bottom:1px solid var(--borde);font-size:13px;">
-        <span style="color:var(--gris);">${m.fecha}</span>
-        <span style="margin-left:10px;">⚖️ ${m.peso}kg · 🔥 ${m.grasa}% grasa</span>
-      </div>`;
+      html += `<div style="padding:8px 0;border-bottom:1px solid var(--borde);font-size:13px;"><span style="color:var(--gris);">${m.fecha}</span><span style="margin-left:10px;">⚖️ ${m.peso}kg · 🔥 ${m.grasa}% grasa</span></div>`;
     });
     html += '</div>';
   }
@@ -761,10 +679,7 @@ window.guardarMedicion = function() {
   renderEvolucion();
 };
 
-// Esperar Firebase
-document.addEventListener('firebase-listo', () => {
-  console.log('Firebase listo');
-});
+document.addEventListener('firebase-listo', () => console.log('Firebase listo'));
 </script>
 </body>
 </html>
