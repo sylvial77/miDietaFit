@@ -301,7 +301,8 @@ function renderHoy() {
   const comida = dietaActual.comidas[dia] || {texto:'–', opciones:[]};
   const cena = dietaActual.cenas[dia] || {texto:'–', opciones:[]};
   let html = `<div class="quincena-badge">${dietaActual.quincena||'Dieta'} · ${dia}</div>`;
-  html += cardComida('Desayuno ☕', dietaActual.desayuno?.descripcion||'–', [{label:'', opciones: dietaActual.desayuno?.opciones||[]}], 'desayuno', dia);
+  const desayunoOpciones = (dietaActual.desayuno?.opciones && dietaActual.desayuno.opciones.length > 0) ? dietaActual.desayuno.opciones : ['Tomate y aceite', 'Aguacate + queso cottage'];
+  html += cardComida('Desayuno ☕', dietaActual.desayuno?.descripcion||'–', [{label:'', opciones: desayunoOpciones}], 'desayuno', dia);
   html += cardComida('Comida 🍽️', comida.texto, [{label:'', opciones: comida.opciones||[]}], 'comida', dia);
   html += cardMediaTarde(dia);
   html += cardComida('Cena 🌙', cena.texto, [{label:'', opciones: cena.opciones||[]}], 'cena', dia);
