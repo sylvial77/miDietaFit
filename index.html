@@ -587,6 +587,7 @@ function renderEvolucion() {
   </div>
   <div class="card">
     <div class="card-titulo">Nueva medición (cada 15 días)</div>
+    <div class="form-grupo"><label class="form-label">Fecha</label><input class="form-input" type="date" id="m-fecha" value="${new Date().toISOString().split('T')[0]}"></div>
     <div class="form-grid">
       <div class="form-grupo"><label class="form-label">Peso (kg)</label><input class="form-input" type="number" step="0.1" id="m-peso" placeholder="${inicio.peso}"></div>
       <div class="form-grupo"><label class="form-label">% Grasa</label><input class="form-input" type="number" step="0.1" id="m-grasa" placeholder="${inicio.grasa}"></div>
@@ -607,8 +608,10 @@ function renderEvolucion() {
 }
 
 window.guardarMedicion = function() {
+  const fechaInput = document.getElementById('m-fecha').value;
+  const fecha = fechaInput ? new Date(fechaInput).toLocaleDateString('es-ES') : new Date().toLocaleDateString('es-ES');
   const m = {
-    fecha: new Date().toLocaleDateString('es-ES'),
+    fecha: fecha,
     peso: document.getElementById('m-peso').value||'–',
     grasa: document.getElementById('m-grasa').value||'–',
     agua: document.getElementById('m-agua').value||'–',
