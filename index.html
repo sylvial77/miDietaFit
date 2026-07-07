@@ -246,8 +246,13 @@ function guardarFirebase(path, data) {
   window.dbSet(window.dbRef(window.db, path), data);
 }
 function cargarFirebase(path, callback) {
-  if (!window.fbListo) { callback(null); return; }
-  window.dbOnValue(window.dbRef(window.db, path), snap => callback(snap.val()));
+  if (window.fbListo) {
+    window.dbOnValue(window.dbRef(window.db, path), snap => callback(snap.val()));
+  } else {
+    document.addEventListener('firebase-listo', () => {
+      window.dbOnValue(window.dbRef(window.db, path), snap => callback(snap.val()));
+    }, { once: true });
+  }
 }
  
 window.entrar = function(perfil) {
