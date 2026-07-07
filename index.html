@@ -462,7 +462,8 @@ function renderDieta() {
   if (dietaActual) {
     c.innerHTML = `<div class="dieta-cargada-badge">✅ ${dietaActual.quincena||'Dieta cargada'} · ${dietaActual.cargadoEl||''}</div>
     <div class="card"><div class="card-titulo">Objetivo</div><div style="font-size:14px;color:var(--texto);line-height:1.6;">${dietaActual.resumen||''}</div></div>
-    <button class="btn-secundario" onclick="mostrarUpload()">📄 Cargar nueva dieta (PDF)</button>`;
+    <button class="btn-secundario" onclick="mostrarUpload()">📄 Cargar nueva dieta (PDF)</button>
+    <button class="btn-secundario" onclick="mostrarPegarJSON()">📋 Pegar JSON manualmente</button>`;
   } else {
     c.innerHTML = `<div style="margin-bottom:12px;"><div style="font-size:15px;font-weight:600;margin-bottom:4px;">Carga tu dieta</div><div style="font-size:13px;color:var(--gris);">Sube el PDF que te manda tu nutricionista.</div></div>
     <div id="upload-area">
@@ -472,7 +473,8 @@ function renderDieta() {
         <div class="upload-sub">Toca aquí para seleccionar el archivo PDF</div>
       </div>
       <input type="file" accept="application/pdf" class="upload-input" id="pdf-input" onchange="procesarPDF(this)">
-    </div>`;
+    </div>
+    <button class="btn-secundario" style="margin-top:10px;" onclick="mostrarPegarJSON()">📋 Pegar JSON manualmente</button>`;
   }
 }
  
@@ -630,6 +632,25 @@ window.guardarMedicion = function() {
   renderEvolucion();
 };
  
+window.mostrarPegarJSON = function() {
+  document.getElementById('dieta-contenido').innerHTML = `
+    <div style="font-size:15px;font-weight:600;margin-bottom:10px;">Pegar JSON de la dieta</div>
+    <textarea id="json-manual" style="width:100%;height:200px;border:1.5px solid var(--borde);border-radius:10px;padding:10px;font-family:monospace;font-size:12px;"></textarea>
+    <button class="btn-guardar" style="margin-top:10px;" onclick="guardarDietaManual()">Guardar</button>
+    <button class="btn-secundario" onclick="renderDieta()">Cancelar</button>`;
+};
+window.guardarDietaManual = function() {
+  try {
+    const dieta = JSON.parse(document.getElementById('json-manual').value);
+    dieta.cargadoEl = new Date().toLocaleDateString('es-ES');
+    dietaActual = dieta;
+    guardarFirebase('dieta', dieta);
+    mostrarNotif('✅ Dieta cargada correctamente');
+    renderDieta(); renderHoy(); renderSemana(); renderCompra();
+  } catch(err) {
+    alert('JSON inválido, revisa el formato.');
+  }
+};
 document.addEventListener('firebase-listo', () => console.log('Firebase listo'));
 </script>
 </body>
