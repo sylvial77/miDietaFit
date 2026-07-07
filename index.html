@@ -7,6 +7,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="theme-color" content="#1a1a2e">
 <title>MiDieta Fit</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -307,15 +308,15 @@ function renderHoy() {
   const cena = dietaActual.cenas[dia] || {texto:'–', opciones:[]};
   let html = `<div class="quincena-badge">${dietaActual.quincena||'Dieta'} · ${dia}</div>`;
   const desayunoOpciones = (dietaActual.desayuno?.opciones && dietaActual.desayuno.opciones.length > 0) ? dietaActual.desayuno.opciones : ['Tomate y aceite', 'Aguacate + queso cottage'];
-  html += cardComida('Desayuno ☕', dietaActual.desayuno?.descripcion||'–', [{label:'', opciones: desayunoOpciones}], 'desayuno', dia);
-  html += cardComida('Comida 🍽️', comida.texto, [{label:'', opciones: comida.opciones||[]}], 'comida', dia);
+  html += cardComida('Desayuno ☕', dietaActual.desayuno?.descripcion||'–', [{label:'', opciones: desayunoOpciones}], 'desayuno', dia, '#d68910');
+  html += cardComida('Comida 🍽️', comida.texto, [{label:'', opciones: comida.opciones||[]}], 'comida', dia, '#2d7a4f');
   html += cardMediaTarde(dia);
-  html += cardComida('Cena 🌙', cena.texto, [{label:'', opciones: cena.opciones||[]}], 'cena', dia);
-  html += cardComida('Postre / recena 🍫', dietaActual.postre?.descripcion||'–', [{label:'', opciones: dietaActual.postre?.opciones||[]}], 'postre', dia);
+  html += cardComida('Cena 🌙', cena.texto, [{label:'', opciones: cena.opciones||[]}], 'cena', dia, '#35507a');
+  html += cardComida('Postre / recena 🍫', dietaActual.postre?.descripcion||'–', [{label:'', opciones: dietaActual.postre?.opciones||[]}], 'postre', dia, '#7a4f8c');
   c.innerHTML = html;
 }
  
-function cardComida(titulo, texto, grupos, tipo, dia) {
+function cardComida(titulo, texto, grupos, tipo, dia, color) {
   let gruposHtml = '';
   grupos.forEach(g => {
     if (!g.opciones || g.opciones.length === 0) return;
@@ -331,7 +332,7 @@ function cardComida(titulo, texto, grupos, tipo, dia) {
     });
     gruposHtml += `</div></div>`;
   });
-  return `<div class="card"><div class="card-titulo">${titulo}</div><div class="comida-desc">${texto}</div>${gruposHtml}</div>`;
+  return `<div class="card"><div class="card-titulo" style="color:${color||'var(--gris)'};font-size:13px;">${titulo}</div><div class="comida-desc">${texto}</div>${gruposHtml}</div>`;
 }
  
 function cardMediaTarde(dia) {
@@ -340,27 +341,17 @@ function cardMediaTarde(dia) {
   // Siempre usar valores fijos como fallback seguro
   const opcionesBase = (mt.opcionesBase && mt.opcionesBase.length > 0) ? mt.opcionesBase : ['Queso batido 0%', 'Yogur con proteínas'];
   const opcionesFruta = (mt.opcionesFruta && mt.opcionesFruta.length > 0) ? mt.opcionesFruta : ['Fresas', 'Melón', 'Pera', 'Manzana', 'Kiwi'];
+  const todasOpciones = [...opcionesBase, ...opcionesFruta];
  
-  const keyBase = dia + '_mediaTarde_base';
-  const keyFruta = dia + '_mediaTarde_fruta';
-  const elegidaBase = elecciones[keyBase] || null;
-  const elegidaFruta = elecciones[keyFruta] || null;
+  const key = dia + '_mediaTarde_opcion';
+  const elegida = elecciones[key] || null;
  
-  let html = `<div class="card"><div class="card-titulo">Media tarde 🍎</div><div class="comida-desc">${mt.descripcion||'–'}</div>`;
+  let html = `<div class="card"><div class="card-titulo" style="color:#b5563c;font-size:13px;">Media tarde 🍎</div><div class="comida-desc">${mt.descripcion||'–'}</div>`;
  
-  html += `<div class="opciones-grupo"><div class="opciones-grupo-label">Base</div><div class="opciones">`;
-  opcionesBase.forEach(op => {
-    const sel = elegidaBase === op ? ' elegida' : '';
-    html += `<button class="opcion-chip${sel}" onclick="elegirOpcion('${dia}','mediaTarde','${op.replace(/'/g,"\\'")}','base')">${op}</button>`;
-  });
-  html += `</div></div>`;
- 
-  html += `<div class="divisor"></div>`;
- 
-  html += `<div class="opciones-grupo"><div class="opciones-grupo-label">Fruta</div><div class="opciones">`;
-  opcionesFruta.forEach(op => {
-    const sel = elegidaFruta === op ? ' elegida' : '';
-    html += `<button class="opcion-chip${sel}" onclick="elegirOpcion('${dia}','mediaTarde','${op.replace(/'/g,"\\'")}','fruta')">${op}</button>`;
+  html += `<div class="opciones-grupo"><div class="opciones">`;
+  todasOpciones.forEach(op => {
+    const sel = elegida === op ? ' elegida' : '';
+    html += `<button class="opcion-chip${sel}" onclick="elegirOpcion('${dia}','mediaTarde','${op.replace(/'/g,"\\'")}','opcion')">${op}</button>`;
   });
   html += `</div></div></div>`;
   return html;
@@ -398,11 +389,11 @@ function renderSemana() {
         <div class="dia-arrow ${esHoy?'abierto':''}">▾</div>
       </div>
       <div class="dia-body ${esHoy?'abierto':''}">
-        <div class="dia-comida"><div class="dia-comida-hora">Desayuno</div><div class="dia-comida-texto">${dietaActual.desayuno?.descripcion||'–'}</div></div>
-        <div class="dia-comida"><div class="dia-comida-hora">Comida</div><div class="dia-comida-texto">${comida.texto}</div></div>
-        <div class="dia-comida"><div class="dia-comida-hora">Media tarde</div><div class="dia-comida-texto">${dietaActual.mediaTarde?.descripcion||'–'}</div></div>
-        <div class="dia-comida"><div class="dia-comida-hora">Cena</div><div class="dia-comida-texto">${cena.texto}</div></div>
-        <div class="dia-comida"><div class="dia-comida-hora">Postre / recena</div><div class="dia-comida-texto">${dietaActual.postre?.descripcion||'–'}</div></div>
+        <div class="dia-comida"><div class="dia-comida-hora" style="color:#d68910;">Desayuno</div><div class="dia-comida-texto">${dietaActual.desayuno?.descripcion||'–'}</div></div>
+        <div class="dia-comida"><div class="dia-comida-hora" style="color:#2d7a4f;">Comida</div><div class="dia-comida-texto">${comida.texto}</div></div>
+        <div class="dia-comida"><div class="dia-comida-hora" style="color:#b5563c;">Media tarde</div><div class="dia-comida-texto">${dietaActual.mediaTarde?.descripcion||'–'}</div></div>
+        <div class="dia-comida"><div class="dia-comida-hora" style="color:#35507a;">Cena</div><div class="dia-comida-texto">${cena.texto}</div></div>
+        <div class="dia-comida"><div class="dia-comida-hora" style="color:#7a4f8c;">Postre / recena</div><div class="dia-comida-texto">${dietaActual.postre?.descripcion||'–'}</div></div>
       </div>
     </div>`;
   });
@@ -574,9 +565,52 @@ function fileToBase64(file) {
 // ══════════════════════════════════════
 // EVOLUCIÓN
 // ══════════════════════════════════════
+function fechaKey(m) {
+  if (m.fechaISO) return m.fechaISO;
+  if (m.fecha) {
+    const partes = m.fecha.split('/');
+    if (partes.length === 3) {
+      const [d, mo, y] = partes;
+      const yyyy = y.length === 4 ? y : ('20' + y);
+      return yyyy + '-' + mo.padStart(2,'0') + '-' + d.padStart(2,'0');
+    }
+  }
+  return '0000-00-00';
+}
+
+function dibujarGraficaEvolucion(datos) {
+  const canvas = document.getElementById('chart-evolucion');
+  if (!canvas || typeof Chart === 'undefined') return;
+  const labels = datos.map(d => d.fecha);
+  const peso = datos.map(d => parseFloat(d.peso));
+  const grasa = datos.map(d => parseFloat(d.grasa));
+  const musculo = datos.map(d => parseFloat(d.musculo));
+  if (window.chartEvolucion) window.chartEvolucion.destroy();
+  window.chartEvolucion = new Chart(canvas, {
+    type: 'line',
+    data: {
+      labels: labels,
+      datasets: [
+        {label:'Peso (kg)', data:peso, borderColor:'#2d7a4f', backgroundColor:'#2d7a4f', yAxisID:'y', tension:0.3},
+        {label:'% Grasa', data:grasa, borderColor:'#e8622a', backgroundColor:'#e8622a', yAxisID:'y1', tension:0.3},
+        {label:'Kg músculo', data:musculo, borderColor:'#6b6b6b', backgroundColor:'#6b6b6b', yAxisID:'y', tension:0.3}
+      ]
+    },
+    options: {
+      responsive: true,
+      plugins: { legend: { position:'bottom', labels:{font:{size:11}} } },
+      scales: {
+        y: { type:'linear', position:'left', title:{display:true,text:'kg'} },
+        y1: { type:'linear', position:'right', title:{display:true,text:'% grasa'}, grid:{drawOnChartArea:false} }
+      }
+    }
+  });
+}
+
 function renderEvolucion() {
-  const inicio = {peso:86.2, grasa:41.9, agua:43.2, musculo:47.5, visceral:9};
-  const ultima = mediciones.length > 0 ? mediciones[mediciones.length-1] : null;
+  const inicio = {peso:86.2, grasa:41.9, agua:43.2, musculo:47.5, visceral:9, fecha:'06/06/2026', fechaISO:'2026-06-06'};
+  const medicionesOrdenadas = mediciones.slice().sort((a,b) => fechaKey(a).localeCompare(fechaKey(b)));
+  const ultima = medicionesOrdenadas.length > 0 ? medicionesOrdenadas[medicionesOrdenadas.length-1] : null;
   const actual = ultima || inicio;
   function cambio(campo) {
     if (!ultima) return '<span style="color:var(--gris);font-size:11px;">Inicio</span>';
@@ -593,6 +627,10 @@ function renderEvolucion() {
     <div class="evol-stat"><div class="evol-label">Grasa visceral</div><div class="evol-valor">${actual.visceral}<span class="evol-unidad"> kg</span></div>${cambio('visceral')}</div>
   </div>
   <div class="card">
+    <div class="card-titulo">Gráfica</div>
+    <canvas id="chart-evolucion" height="200"></canvas>
+  </div>
+  <div class="card">
     <div class="card-titulo">Nueva medición (cada 15 días)</div>
     <div style="max-width:160px;margin-bottom:12px;"><label class="form-label">Fecha</label><input class="form-input" type="date" id="m-fecha" value="${new Date().toISOString().split('T')[0]}" style="font-size:13px;padding:7px 10px;"></div>
     <div class="form-grid">
@@ -604,14 +642,15 @@ function renderEvolucion() {
     </div>
     <button class="btn-guardar" onclick="guardarMedicion()">Guardar medición</button>
   </div>`;
-  if (mediciones.length > 0) {
+  if (medicionesOrdenadas.length > 0) {
     html += `<div class="card"><div class="card-titulo">Historial</div>`;
-    mediciones.slice().reverse().forEach(m => {
+    medicionesOrdenadas.slice().reverse().forEach(m => {
       html += `<div style="padding:8px 0;border-bottom:1px solid var(--borde);font-size:13px;"><span style="color:var(--gris);">${m.fecha}</span><span style="margin-left:10px;">⚖️ ${m.peso}kg · 🔥 ${m.grasa}% grasa</span></div>`;
     });
     html += '</div>';
   }
   document.getElementById('evolucion-contenido').innerHTML = html;
+  dibujarGraficaEvolucion([inicio, ...medicionesOrdenadas]);
 }
  
 window.guardarMedicion = function() {
@@ -619,6 +658,7 @@ window.guardarMedicion = function() {
   const fecha = fechaInput ? new Date(fechaInput).toLocaleDateString('es-ES') : new Date().toLocaleDateString('es-ES');
   const m = {
     fecha: fecha,
+    fechaISO: fechaInput || new Date().toISOString().split('T')[0],
     peso: document.getElementById('m-peso').value||'–',
     grasa: document.getElementById('m-grasa').value||'–',
     agua: document.getElementById('m-agua').value||'–',
@@ -655,3 +695,4 @@ document.addEventListener('firebase-listo', () => console.log('Firebase listo'))
 </script>
 </body>
 </html>
+
